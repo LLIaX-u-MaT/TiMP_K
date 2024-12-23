@@ -21,6 +21,14 @@ SUITE(SetDataBaseTests) {
     BaseConnector connector;
     CHECK_THROW(connector.baseConnection("test/emptyBase.txt"), criticalErr);
   }
+  TEST(EmptyLoginDataBase) {
+    BaseConnector connector;
+    CHECK_THROW(connector.baseConnection("test/dataNoLogin.txt"), criticalErr);
+  }
+  TEST(EmptyPassDataBase) {
+    BaseConnector connector;
+    CHECK_THROW(connector.baseConnection("test/dataNoPass.txt"), criticalErr);
+  }
   TEST(DataBaseReconnection) {
     BaseConnector connector;
     CHECK_EQUAL(0, connector.baseConnection("test/data.txt"));
@@ -33,11 +41,15 @@ SUITE(SetLoggerTests) {
     Logger logger;
     CHECK_EQUAL(logger.setLogPath("test/log.txt"), 0);
   }
-  TEST(WriteLog_FallbackOnError) {
+  TEST(SetLog_InvalidPathError) {
     Logger logger;
     CHECK_THROW(logger.setLogPath("/invalid/path/to/log"), criticalErr);
   }
-  TEST(SetLogPath_In_Protected_Folder) {
+  TEST(SetLog_EmptyPathError) {
+    Logger logger;
+    CHECK_THROW(logger.setLogPath(""), criticalErr);
+  }
+  TEST(SetLogPathInProtectedFolder) {
     Logger logger;
     CHECK_THROW(logger.setLogPath("/var/log/test.log"), criticalErr);
   }
@@ -59,13 +71,6 @@ SUITE(CommunicatorTests) {
     std::string expected_hash =
         "90A3ED9E32B2AAF4C61C410EB925426119E1A9DC53D4286ADE99A809";
     CHECK_EQUAL(server.sha224(input), expected_hash);
-  }
-  TEST(InvalidHash) {
-    Server server;
-    std::string input = "test";
-    std::string invalid_hash =
-        "00000000000000000000000000000000000000000000000000000000";
-    CHECK(invalid_hash != server.sha224(input));
   }
   TEST(EmptyStringHash) {
     Server server;
@@ -89,6 +94,13 @@ SUITE(CommunicatorTests) {
         "9AF50091DEDA5C56499A0FFAEED67B1A1EE19206BA78F78924443208";
     CHECK_EQUAL(server.sha224(input), expected_hash);
   }
+  TEST(HashWithWhiteSpace) {
+    Server server;
+    std::string input = "test 123";
+    std::string expected_hash =
+        "36BACDB6F72F16A6D00674B09F49FA70B8894DC614C5028E3E412517";
+    CHECK_EQUAL(server.sha224(input), expected_hash);
+  }
 }
 SUITE(CalculatorTests) {
   TEST(MultiplyPositiveNumbers) {
@@ -104,10 +116,10 @@ SUITE(CalculatorTests) {
   TEST(PositiveOverflow) {
     std::vector<int64_t> input = {numeric_limits<int64_t>::max(), 2};
     Calculator calculate(input);
-    CHECK_EQUAL(numeric_limits<int64_t>::max(), calculate.sendResult());
+    CHECK_EQUAL(9223372036854775807, calculate.sendResult());
   }
   TEST(NegativeOverflow) {
-    std::vector<int64_t> input = {numeric_limits<int64_t>::min(), 10};
+    std::vector<int64_t> input = {numeric_limits<int64_t>::min(), 2};
     Calculator calculate(input);
     CHECK_EQUAL(numeric_limits<int64_t>::min(), calculate.sendResult());
   }
