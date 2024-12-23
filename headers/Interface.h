@@ -25,7 +25,7 @@ private:
     int p;
     
     bool p_default() const { return (p == 33333); }
-    bool b_default() const { return (d == "/etc/vcalc.conf"); }
+    bool d_default() const { return (d == "/etc/vcalc.conf"); }
     bool l_default() const { return (l == "/var/log/vcalc.log"); }
   } params;
 };

@@ -12,6 +12,6 @@ class Calculator {
   int64_t finalResult;
 
 public:
-  Calculator(vector<int64_t> input_data);
+  Calculator(vector<int64_t> inputVector);
   int64_t sendResult() const;
 };
