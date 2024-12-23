@@ -66,6 +66,7 @@ int Server::connection(int port,
       auto it = dataFileName.find(login);
       if (it == dataFileName.end()) {
         send(handler_socket, "ERR", 3, 0);
+        log->writelog("Клиент не прошёл аутентификацию");
         close(handler_socket);
         continue;
       }
