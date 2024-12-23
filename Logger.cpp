@@ -36,8 +36,8 @@ int Logger::writelog(string s) {
     ofstream filelog(pathLogFile, ios_base::out | ios_base::app);
 
     if (!filelog.is_open()) {
-        cerr << "Ошибка: не удалось создать журнал в " << pathLogFile
-                  << ". Создание журнала на /tmp/vcalc.log" << endl;
+        cerr << "Внимание: Не удалось создать журнал в " << pathLogFile
+                  << ". Создание журнала в /tmp/vcalc.log" << endl;
         pathLogFile = "/tmp/vcalc.log";
         filelog.open(pathLogFile, ios_base::out | ios_base::app);
 
