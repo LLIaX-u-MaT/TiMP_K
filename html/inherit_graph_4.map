@@ -1,3 +1,6 @@
 <map id="Иерархия классов. Графический вид." name="Иерархия классов. Графический вид.">
-<area shape="rect" id="node1" href="$classServer.html" title="Класс для работы с серверными функциями." alt="" coords="5,5,69,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,31,169,57"/>
+<area shape="rect" id="node2" href="$classdataBaseErr.html" title="Класс для обработки ошибок базы данных." alt="" coords="217,5,319,32"/>
+<area shape="rect" id="node4" href="$classlogErr.html" title="Класс для обработки ошибок логирования." alt="" coords="238,56,298,83"/>
+<area shape="rect" id="node3" href="$classcriticalDataBaseErr.html" title="Класс для обработки критических ошибок базы данных." alt="" coords="367,5,513,32"/>
 </map>

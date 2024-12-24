@@ -25,14 +25,14 @@ using namespace std;
  * представления ошибок, связанных с неправильными аргументами при
  * работе с базой данных.
  */
-class dataBaseErr : public invalid_argument {
+class dataBaseErr : public std::invalid_argument {
 public:
     /**
      * @brief Конструктор для создания объекта dataBaseErr.
      *
      * @param s Сообщение об ошибке.
      */
-    dataBaseErr(const string &s) : invalid_argument(s) {}
+    dataBaseErr(const string &s) : std::invalid_argument(s) {}
 };
 
 /**
@@ -57,17 +57,17 @@ public:
  * @class logErr
  * @brief Класс для обработки ошибок логирования.
  *
- * Этот класс наследуется от std::runtime_error и используется для
+ * Этот класс наследуется от std::invalid_argument и используется для
  * представления ошибок, связанных с процессом логирования в приложении.
  */
-class logErr : public std::runtime_error {
+class logErr : public std::invalid_argument {
 public:
     /**
      * @brief Конструктор для создания объекта logErr.
      *
      * @param message Сообщение об ошибке.
      */
-    explicit logErr(const std::string &message) : std::runtime_error(message) {}
+    explicit logErr(const std::string &message) : std::invalid_argument(message) {}
 };
 
 /**
