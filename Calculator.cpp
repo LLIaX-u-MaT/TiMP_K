@@ -1,3 +1,8 @@
+/**
+ * @file Calculator.cpp
+ * @brief Определение класса Calculator для выполнения расчетов.
+ */
+ 
 #include "Calculator.h"
 
 Calculator::Calculator(std::vector<int64_t> inputVector) {
@@ -9,7 +14,6 @@ Calculator::Calculator(std::vector<int64_t> inputVector) {
         return;
       }
 
-      // Проверка на переполнение
       if (result > 0 && item > 0 &&
           result > std::numeric_limits<int64_t>::max() / item) {
         throw boost::numeric::positive_overflow();

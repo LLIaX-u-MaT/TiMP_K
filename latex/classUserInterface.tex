@@ -1,0 +1,155 @@
+\hypertarget{classUserInterface}{}\doxysection{Класс User\+Interface}
+\label{classUserInterface}\index{UserInterface@{UserInterface}}
+
+
+Класс для обработки пользовательского интерфейса.  
+
+
+
+
+{\ttfamily \#include $<$Interface.\+h$>$}
+
+
+
+Граф связей класса User\+Interface\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=205pt]{classUserInterface__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Классы}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structUserInterface_1_1Params}{Params}}
+\begin{DoxyCompactList}\small\item\em Структура для хранения параметров приложения. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Открытые члены}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classUserInterface_a4fbd684be23f627e895adc03d6830c78}{interface}} (int argc, const char $\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em Основной метод интерфейса. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Закрытые данные}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structUserInterface_1_1Params}{User\+Interface\+::\+Params}} \mbox{\hyperlink{classUserInterface_af13fb96c6e9886081b7f83c051078370}{params}}
+\begin{DoxyCompactList}\small\item\em Экземпляр структуры \mbox{\hyperlink{structUserInterface_1_1Params}{Params}} для хранения параметров. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Подробное описание}
+Класс для обработки пользовательского интерфейса. 
+
+Класс \mbox{\hyperlink{classUserInterface}{User\+Interface}} отвечает за взаимодействие с пользователем, включая обработку аргументов командной строки и настройку параметров приложения. 
+
+\doxysubsection{Методы}
+\mbox{\Hypertarget{classUserInterface_a4fbd684be23f627e895adc03d6830c78}\label{classUserInterface_a4fbd684be23f627e895adc03d6830c78}} 
+\index{UserInterface@{UserInterface}!interface@{interface}}
+\index{interface@{interface}!UserInterface@{UserInterface}}
+\doxysubsubsection{\texorpdfstring{interface()}{interface()}}
+{\footnotesize\ttfamily int User\+Interface\+::interface (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{const char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+Основной метод интерфейса. 
+
+Этот метод принимает аргументы командной строки и обрабатывает их, настраивая параметры приложения.
+
+
+\begin{DoxyParams}{Аргументы}
+{\em argc} & Количество аргументов командной строки. \\
+\hline
+{\em argv} & Массив аргументов командной строки. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+Возвращает код завершения (0 -\/ успех, другой -\/ ошибка). 
+\end{DoxyReturn}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{11                                                         \{}
+\DoxyCodeLine{12   po::options\_description desc(\textcolor{stringliteral}{"{}Доступные опции"{}});}
+\DoxyCodeLine{13   desc.add\_options()(\textcolor{stringliteral}{"{}help,h"{}}, \textcolor{stringliteral}{"{}Выдать справку"{}})(}
+\DoxyCodeLine{14       \textcolor{stringliteral}{"{}database,d"{}},}
+\DoxyCodeLine{15       po::value<string>(\&\mbox{\hyperlink{classUserInterface_af13fb96c6e9886081b7f83c051078370}{params}}.\mbox{\hyperlink{structUserInterface_1_1Params_a6e822ec952167c94c445e2d672d5757b}{d}})-\/>default\_value(\textcolor{stringliteral}{"{}/etc/vcalc.conf"{}}),}
+\DoxyCodeLine{16       \textcolor{stringliteral}{"{}Установить путь к базе данных"{}})(}
+\DoxyCodeLine{17       \textcolor{stringliteral}{"{}log,l"{}},}
+\DoxyCodeLine{18       po::value<string>(\&\mbox{\hyperlink{classUserInterface_af13fb96c6e9886081b7f83c051078370}{params}}.\mbox{\hyperlink{structUserInterface_1_1Params_a63431cf1a50f2bd7e4a2867455a86219}{l}})-\/>default\_value(\textcolor{stringliteral}{"{}/var/log/vcalc.log"{}}),}
+\DoxyCodeLine{19       \textcolor{stringliteral}{"{}Установить путь к журналу"{}})(}
+\DoxyCodeLine{20       \textcolor{stringliteral}{"{}port,p"{}}, po::value<int>(\&\mbox{\hyperlink{classUserInterface_af13fb96c6e9886081b7f83c051078370}{params}}.\mbox{\hyperlink{structUserInterface_1_1Params_a13c14c22bb9efb1cdc19d7e6185e8bef}{p}})-\/>default\_value(33333),}
+\DoxyCodeLine{21       \textcolor{stringliteral}{"{}Установить порт"{}});}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23   po::variables\_map vm;}
+\DoxyCodeLine{24   \textcolor{keywordflow}{try} \{}
+\DoxyCodeLine{25     po::store(po::parse\_command\_line(argc, argv, desc), vm);}
+\DoxyCodeLine{26     po::notify(vm);}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28     \textcolor{keywordflow}{if} (vm.count(\textcolor{stringliteral}{"{}help"{}})) \{}
+\DoxyCodeLine{29       cout << desc << endl;}
+\DoxyCodeLine{30       cout << \textcolor{stringliteral}{"{}Пример: "{}} << argv[0]}
+\DoxyCodeLine{31            << \textcolor{stringliteral}{"{} -\/d[atabase] data.txt -\/l[og] log.txt -\/p[ort] 7777"{}} << endl;}
+\DoxyCodeLine{32       \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{33     \}}
+\DoxyCodeLine{34     \textcolor{keywordtype}{string} dataFileName = vm[\textcolor{stringliteral}{"{}database"{}}].as<\textcolor{keywordtype}{string}>();}
+\DoxyCodeLine{35     \textcolor{keywordtype}{string} logFileName = vm[\textcolor{stringliteral}{"{}log"{}}].as<\textcolor{keywordtype}{string}>();}
+\DoxyCodeLine{36     \textcolor{keywordtype}{int} port = vm[\textcolor{stringliteral}{"{}port"{}}].as<\textcolor{keywordtype}{int}>();}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38     \textcolor{keywordflow}{if} (port < 1 || port > 65535) \{}
+\DoxyCodeLine{39       \textcolor{keywordflow}{throw} po::validation\_error(po::validation\_error::invalid\_option\_value,}
+\DoxyCodeLine{40                                  \textcolor{stringliteral}{"{}port"{}});}
+\DoxyCodeLine{41     \}}
+\DoxyCodeLine{42     \textcolor{keywordflow}{if} (\mbox{\hyperlink{classUserInterface_af13fb96c6e9886081b7f83c051078370}{params}}.\mbox{\hyperlink{structUserInterface_1_1Params_a92f3955a56510522b534aa396c7ad5ce}{p\_default}}() \&\& \mbox{\hyperlink{classUserInterface_af13fb96c6e9886081b7f83c051078370}{params}}.\mbox{\hyperlink{structUserInterface_1_1Params_ad02f640ca89fc022901b231b38b86485}{d\_default}}() \&\& \mbox{\hyperlink{classUserInterface_af13fb96c6e9886081b7f83c051078370}{params}}.\mbox{\hyperlink{structUserInterface_1_1Params_a7665d2530e4d07e63e0706324e69529d}{l\_default}}()) \{}
+\DoxyCodeLine{43       std::cout << desc << std::endl;}
+\DoxyCodeLine{44     \}}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46     \mbox{\hyperlink{classLogger}{Logger}} log(logFileName);}
+\DoxyCodeLine{47     \mbox{\hyperlink{classBaseConnector}{BaseConnector}} bc;}
+\DoxyCodeLine{48     bc.\mbox{\hyperlink{classBaseConnector_a6436683ab001f5856191484ea612b6c7}{baseConnection}}(dataFileName);}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50     log.writelog((logFileName != \textcolor{stringliteral}{"{}/var/log/vcalc.log"{}})}
+\DoxyCodeLine{51                      ? \textcolor{stringliteral}{"{}Путь к журналу: "{}} + logFileName}
+\DoxyCodeLine{52                      : \textcolor{stringliteral}{"{}Путь к журналу по умолчанию: "{}} + logFileName);}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{54     log.writelog((dataFileName != \textcolor{stringliteral}{"{}/etc/vcalc.conf"{}})}
+\DoxyCodeLine{55                      ? \textcolor{stringliteral}{"{}Путь к базе данных: "{}} + dataFileName}
+\DoxyCodeLine{56                      : \textcolor{stringliteral}{"{}Путь к базе данных по умолчанию: "{}} + dataFileName);}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58     log.writelog((port != 33333) ? \textcolor{stringliteral}{"{}Порт: "{}} + to\_string(port)}
+\DoxyCodeLine{59                                  : \textcolor{stringliteral}{"{}Порт по умолчанию: "{}} + to\_string(port));}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61     \mbox{\hyperlink{classServer}{Server}} connect;}
+\DoxyCodeLine{62     connect.\mbox{\hyperlink{classServer_a31081b1ad7c7bd7a4818ab72b737a1e7}{connection}}(port, bc.\mbox{\hyperlink{classBaseConnector_adbfb3fecd3e1e04673ef50afb9171120}{get\_data}}(), \&log);}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64   \} \textcolor{keywordflow}{catch} (\textcolor{keyword}{const} po::error \&e) \{}
+\DoxyCodeLine{65     cerr << \textcolor{stringliteral}{"{}Ошибка Boost: "{}} << e.what() << endl;}
+\DoxyCodeLine{66     \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{67   \} \textcolor{keywordflow}{catch} (\textcolor{keyword}{const} exception \&e) \{}
+\DoxyCodeLine{68     cerr << \textcolor{stringliteral}{"{}Ошибка: "{}} << e.what() << endl;}
+\DoxyCodeLine{69     \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{70   \} \textcolor{keywordflow}{catch} (...) \{}
+\DoxyCodeLine{71     cerr << \textcolor{stringliteral}{"{}Неизвестная ошибка"{}} << endl;}
+\DoxyCodeLine{72     \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{73   \}}
+\DoxyCodeLine{74 }
+\DoxyCodeLine{75   \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{76 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Данные класса}
+\mbox{\Hypertarget{classUserInterface_af13fb96c6e9886081b7f83c051078370}\label{classUserInterface_af13fb96c6e9886081b7f83c051078370}} 
+\index{UserInterface@{UserInterface}!params@{params}}
+\index{params@{params}!UserInterface@{UserInterface}}
+\doxysubsubsection{\texorpdfstring{params}{params}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structUserInterface_1_1Params}{User\+Interface\+::\+Params}} User\+Interface\+::params\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Экземпляр структуры \mbox{\hyperlink{structUserInterface_1_1Params}{Params}} для хранения параметров. 
+
+
+
+Объявления и описания членов классов находятся в файлах\+:\begin{DoxyCompactItemize}
+\item 
+/home/stud/Загрузки/\+Ti\+MP/\+Ti\+MP\+\_\+\+K/headers/\mbox{\hyperlink{Interface_8h}{Interface.\+h}}\item 
+/home/stud/Загрузки/\+Ti\+MP/\+Ti\+MP\+\_\+\+K/\mbox{\hyperlink{Interface_8cpp}{Interface.\+cpp}}\end{DoxyCompactItemize}

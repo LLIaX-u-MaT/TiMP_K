@@ -1,0 +1,69 @@
+\hypertarget{classlogErr}{}\doxysection{Класс log\+Err}
+\label{classlogErr}\index{logErr@{logErr}}
+
+
+Класс для обработки ошибок логирования.  
+
+
+
+
+{\ttfamily \#include $<$Errors.\+h$>$}
+
+
+
+Граф наследования\+:log\+Err\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=184pt]{classlogErr__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Граф связей класса log\+Err\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=184pt]{classlogErr__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Открытые члены}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classlogErr_aad28be6aa7731a413838e651432e1e39}{log\+Err}} (const std\+::string \&message)
+\begin{DoxyCompactList}\small\item\em Конструктор для создания объекта \mbox{\hyperlink{classlogErr}{log\+Err}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Подробное описание}
+Класс для обработки ошибок логирования. 
+
+Этот класс наследуется от std\+::runtime\+\_\+error и используется для представления ошибок, связанных с процессом логирования в приложении. 
+
+\doxysubsection{Конструктор(ы)}
+\mbox{\Hypertarget{classlogErr_aad28be6aa7731a413838e651432e1e39}\label{classlogErr_aad28be6aa7731a413838e651432e1e39}} 
+\index{logErr@{logErr}!logErr@{logErr}}
+\index{logErr@{logErr}!logErr@{logErr}}
+\doxysubsubsection{\texorpdfstring{logErr()}{logErr()}}
+{\footnotesize\ttfamily log\+Err\+::log\+Err (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{message }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+Конструктор для создания объекта \mbox{\hyperlink{classlogErr}{log\+Err}}. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em message} & Сообщение об ошибке. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{70 : std::runtime\_error(message) \{\}}
+
+\end{DoxyCode}
+
+
+Объявления и описания членов класса находятся в файле\+:\begin{DoxyCompactItemize}
+\item 
+/home/stud/Загрузки/\+Ti\+MP/\+Ti\+MP\+\_\+\+K/headers/\mbox{\hyperlink{Errors_8h}{Errors.\+h}}\end{DoxyCompactItemize}

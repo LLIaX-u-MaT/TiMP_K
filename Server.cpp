@@ -1,3 +1,8 @@
+/**
+ * @file Server.cpp
+ * @brief Определение класса Server для работы с серверными функциями.
+ */
+
 #include "Server.h"
 
 string Server::sha224(const string &input_str) {
@@ -9,8 +14,7 @@ string Server::sha224(const string &input_str) {
   return new_hash;
 }
 
-int Server::connection(int port,
-                       map<string, string> dataFileName,
+int Server::connection(int port, map<string, string> dataFileName,
                        Logger *log) {
   try {
     int queue_len = 100;
@@ -26,7 +30,8 @@ int Server::connection(int port,
     log->writelog("Сокет прослушивания создан");
 
     if (bind(s, (const sockaddr *)&addr, sizeof(sockaddr_in)) < 0) {
-      throw criticalErr("Ошибка связывания сокетов");
+      string error_message = strerror(errno);
+      throw criticalErr("Ошибка связывания сокетов: " + error_message);
     }
 
     if (listen(s, queue_len) < 0) {
@@ -55,26 +60,27 @@ int Server::connection(int port,
         continue;
       }
 
-      string hash_received(buff + rc - 56, 56);
+      string hashReceived(buff + rc - 56, 56);
       string salt(buff + rc - 72, 16);
       string login(buff, rc - 72);
 
-      log->writelog("Логин: " + login);
-      log->writelog("Соль: " + salt);
-      log->writelog("Хэш: " + hash_received);
-             
+      log->writelog("Полученный логин: " + login);
+      log->writelog("Полученный соль: " + salt);
+      log->writelog("Полученный хэш: " + hashReceived);
+
       auto it = dataFileName.find(login);
       if (it == dataFileName.end()) {
         send(handler_socket, "ERR", 3, 0);
-        log->writelog("Клиент не прошёл аутентификацию");
+        log->writelog("Ошибка: Клиент не прошёл аутентификацию");
         close(handler_socket);
         continue;
       }
 
-      string expected_hash = sha224(salt + it->second);
-      if (expected_hash != hash_received) {
+      string expectedHash = sha224(salt + it->second);
+      log->writelog("Ожидаемый хэш: " + expectedHash);
+      if (expectedHash != hashReceived) {
         send(handler_socket, "ERR", 3, 0);
-        log->writelog("Клиент не прошёл аутентификацию");
+        log->writelog("Ошибка: Клиент не прошёл аутентификацию");
         close(handler_socket);
         continue;
       } else {
@@ -83,9 +89,8 @@ int Server::connection(int port,
       }
 
       uint32_t vector_count;
-      if (recv(handler_socket, &vector_count, sizeof(vector_count), 0) <=
-          0) {
-        log->writelog("Ошибка получения количества векторов");
+      if (recv(handler_socket, &vector_count, sizeof(vector_count), 0) <= 0) {
+        log->writelog("Ошибка: Ошибка получения количества векторов");
         close(handler_socket);
         break;
       }
@@ -93,7 +98,7 @@ int Server::connection(int port,
       for (uint32_t i = 0; i < vector_count; i++) {
         uint32_t vector_size;
         if (recv(handler_socket, &vector_size, sizeof(vector_size), 0) <= 0) {
-          log->writelog("Ошибка получения размера вектора");
+          log->writelog("Ошибка: Ошибка получения размера вектора");
           close(handler_socket);
           break;
         }
@@ -104,7 +109,7 @@ int Server::connection(int port,
         if (received_bytes <= 0 ||
             received_bytes !=
                 static_cast<ssize_t>(vector_size * sizeof(int64_t))) {
-          log->writelog("Ошибка получения данных вектора");
+          log->writelog("Ошибка: Ошибка получения данных вектора");
           close(handler_socket);
           break;
         }
@@ -117,7 +122,7 @@ int Server::connection(int port,
       close(handler_socket);
     }
   } catch (const criticalErr &e) {
-    log->writelog(e.what());
+    log->writelog("Критическая ошибка: " + string(e.what()));
     return -1;
   }
   return 0;

@@ -1,0 +1,224 @@
+\hypertarget{classLogger}{}\doxysection{Класс Logger}
+\label{classLogger}\index{Logger@{Logger}}
+
+
+Класс для ведения логов приложения.  
+
+
+
+
+{\ttfamily \#include $<$Logger.\+h$>$}
+
+\doxysubsection*{Открытые члены}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classLogger_a727b7ada4774b2ef62c124c0a6f55db9}{writelog}} (string s)
+\begin{DoxyCompactList}\small\item\em Запись сообщения в лог-\/файл. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classLogger_a176da0584e92500f1f272687cc93de3b}{set\+Log\+Path}} (string path\+File)
+\begin{DoxyCompactList}\small\item\em Установка пути к файлу лога. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classLogger_abc41bfb031d896170c7675fa96a6b30c}{Logger}} ()
+\begin{DoxyCompactList}\small\item\em Конструктор по умолчанию. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classLogger_a69ca6365b71e06fc145b8db6e4ee8f3d}{Logger}} (string s)
+\begin{DoxyCompactList}\small\item\em Конструктор с заданным путем к файлу лога. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Закрытые статические члены}
+\begin{DoxyCompactItemize}
+\item 
+static string \mbox{\hyperlink{classLogger_a6bc7a4c23d0ffd779d771cc78f35c82b}{get\+Local\+Date\+Time}} (string s)
+\begin{DoxyCompactList}\small\item\em Получение текущей локальной даты и времени в строковом формате. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Закрытые данные}
+\begin{DoxyCompactItemize}
+\item 
+string \mbox{\hyperlink{classLogger_a1b53c69a0714a6d277f6c32ceff7971e}{path\+Log\+File}}
+\begin{DoxyCompactList}\small\item\em Путь к файлу лога. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Подробное описание}
+Класс для ведения логов приложения. 
+
+Класс \mbox{\hyperlink{classLogger}{Logger}} предоставляет функциональность для записи сообщений в лог-\/файл с временными метками. 
+
+\doxysubsection{Конструктор(ы)}
+\mbox{\Hypertarget{classLogger_abc41bfb031d896170c7675fa96a6b30c}\label{classLogger_abc41bfb031d896170c7675fa96a6b30c}} 
+\index{Logger@{Logger}!Logger@{Logger}}
+\index{Logger@{Logger}!Logger@{Logger}}
+\doxysubsubsection{\texorpdfstring{Logger()}{Logger()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Logger\+::\+Logger (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Конструктор по умолчанию. 
+
+Конструктор инициализирует путь к файлу лога пустой строкой. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{73 \{ \mbox{\hyperlink{classLogger_a1b53c69a0714a6d277f6c32ceff7971e}{pathLogFile}} = \textcolor{stringliteral}{"{} "{}}; \};}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classLogger_a69ca6365b71e06fc145b8db6e4ee8f3d}\label{classLogger_a69ca6365b71e06fc145b8db6e4ee8f3d}} 
+\index{Logger@{Logger}!Logger@{Logger}}
+\index{Logger@{Logger}!Logger@{Logger}}
+\doxysubsubsection{\texorpdfstring{Logger()}{Logger()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Logger\+::\+Logger (\begin{DoxyParamCaption}\item[{string}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Конструктор с заданным путем к файлу лога. 
+
+Этот конструктор инициализирует путь к файлу лога заданной строкой.
+
+
+\begin{DoxyParams}{Аргументы}
+{\em s} & Путь к файлу лога. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{82 \{ \mbox{\hyperlink{classLogger_a1b53c69a0714a6d277f6c32ceff7971e}{pathLogFile}} = s; \};}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Методы}
+\mbox{\Hypertarget{classLogger_a6bc7a4c23d0ffd779d771cc78f35c82b}\label{classLogger_a6bc7a4c23d0ffd779d771cc78f35c82b}} 
+\index{Logger@{Logger}!getLocalDateTime@{getLocalDateTime}}
+\index{getLocalDateTime@{getLocalDateTime}!Logger@{Logger}}
+\doxysubsubsection{\texorpdfstring{getLocalDateTime()}{getLocalDateTime()}}
+{\footnotesize\ttfamily string Logger\+::get\+Local\+Date\+Time (\begin{DoxyParamCaption}\item[{string}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Получение текущей локальной даты и времени в строковом формате. 
+
+Этот метод возвращает строку с текущей локальной датой и временем.
+
+
+\begin{DoxyParams}{Аргументы}
+{\em s} & Формат строки для даты и времени. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+Строка с текущей датой и временем. 
+\end{DoxyReturn}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{29                                         \{}
+\DoxyCodeLine{30     time\_t now = time(0);}
+\DoxyCodeLine{31     \textcolor{keyword}{struct }tm tstruct;}
+\DoxyCodeLine{32     \textcolor{keywordtype}{char} buf[80];}
+\DoxyCodeLine{33     tstruct = *localtime(\&now);}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35     \textcolor{keywordflow}{if} (s == \textcolor{stringliteral}{"{}now"{}})}
+\DoxyCodeLine{36         strftime(buf, \textcolor{keyword}{sizeof}(buf), \textcolor{stringliteral}{"{}\%Y-\/\%m-\/\%d \%X"{}}, \&tstruct);}
+\DoxyCodeLine{37     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (s == \textcolor{stringliteral}{"{}date"{}})}
+\DoxyCodeLine{38         strftime(buf, \textcolor{keyword}{sizeof}(buf), \textcolor{stringliteral}{"{}\%Y-\/\%m-\/\%d"{}}, \&tstruct);}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40     \textcolor{keywordflow}{return} string(buf);}
+\DoxyCodeLine{41 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classLogger_a176da0584e92500f1f272687cc93de3b}\label{classLogger_a176da0584e92500f1f272687cc93de3b}} 
+\index{Logger@{Logger}!setLogPath@{setLogPath}}
+\index{setLogPath@{setLogPath}!Logger@{Logger}}
+\doxysubsubsection{\texorpdfstring{setLogPath()}{setLogPath()}}
+{\footnotesize\ttfamily int Logger\+::set\+Log\+Path (\begin{DoxyParamCaption}\item[{string}]{path\+File }\end{DoxyParamCaption})}
+
+
+
+Установка пути к файлу лога. 
+
+Этот метод устанавливает путь к файлу, в который будут записываться логи.
+
+
+\begin{DoxyParams}{Аргументы}
+{\em path\+File} & Путь к файлу лога. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+Возвращает 0 при успешном установлении пути, иначе -\/1. 
+\end{DoxyReturn}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{10                                       \{}
+\DoxyCodeLine{11     ofstream filelog;}
+\DoxyCodeLine{12     filelog.open(pathFile, ios\_base::out | ios\_base::app);}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14     \textcolor{keywordflow}{if} (filelog.is\_open()) \{}
+\DoxyCodeLine{15         \mbox{\hyperlink{classLogger_a1b53c69a0714a6d277f6c32ceff7971e}{pathLogFile}} = pathFile;}
+\DoxyCodeLine{16         \mbox{\hyperlink{classLogger_a727b7ada4774b2ef62c124c0a6f55db9}{writelog}}(\textcolor{stringliteral}{"{}Журнал установлен: "{}} + \mbox{\hyperlink{classLogger_a1b53c69a0714a6d277f6c32ceff7971e}{pathLogFile}});}
+\DoxyCodeLine{17         \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{18     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (pathFile == \textcolor{stringliteral}{"{}/var/log/vcalc.log"{}}) \{}
+\DoxyCodeLine{19         \mbox{\hyperlink{classLogger_a1b53c69a0714a6d277f6c32ceff7971e}{pathLogFile}} = \textcolor{stringliteral}{"{}/tmp/vcalc.log"{}};}
+\DoxyCodeLine{20         filelog.open(\mbox{\hyperlink{classLogger_a1b53c69a0714a6d277f6c32ceff7971e}{pathLogFile}}, ios\_base::out | ios\_base::app);}
+\DoxyCodeLine{21         \textcolor{keywordflow}{if} (filelog.is\_open()) \{}
+\DoxyCodeLine{22             \mbox{\hyperlink{classLogger_a727b7ada4774b2ef62c124c0a6f55db9}{writelog}}(\textcolor{stringliteral}{"{}Журнал установлен: "{}} + \mbox{\hyperlink{classLogger_a1b53c69a0714a6d277f6c32ceff7971e}{pathLogFile}});}
+\DoxyCodeLine{23             \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{24         \}}
+\DoxyCodeLine{25     \}}
+\DoxyCodeLine{26     \textcolor{keywordflow}{throw} \mbox{\hyperlink{classlogErr}{logErr}}(\textcolor{stringliteral}{"{}Не удалось создать журнал: "{}} + \mbox{\hyperlink{classLogger_a1b53c69a0714a6d277f6c32ceff7971e}{pathLogFile}});}
+\DoxyCodeLine{27 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classLogger_a727b7ada4774b2ef62c124c0a6f55db9}\label{classLogger_a727b7ada4774b2ef62c124c0a6f55db9}} 
+\index{Logger@{Logger}!writelog@{writelog}}
+\index{writelog@{writelog}!Logger@{Logger}}
+\doxysubsubsection{\texorpdfstring{writelog()}{writelog()}}
+{\footnotesize\ttfamily int Logger\+::writelog (\begin{DoxyParamCaption}\item[{string}]{s }\end{DoxyParamCaption})}
+
+
+
+Запись сообщения в лог-\/файл. 
+
+Этот метод записывает переданное сообщение в лог-\/файл, добавляя к нему временную метку.
+
+
+\begin{DoxyParams}{Аргументы}
+{\em s} & Сообщение для записи в лог. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+Возвращает 0 при успешной записи, иначе -\/1. 
+\end{DoxyReturn}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{43                              \{}
+\DoxyCodeLine{44     ofstream filelog(\mbox{\hyperlink{classLogger_a1b53c69a0714a6d277f6c32ceff7971e}{pathLogFile}}, ios\_base::out | ios\_base::app);}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46     \textcolor{keywordflow}{if} (!filelog.is\_open()) \{}
+\DoxyCodeLine{47         cerr << \textcolor{stringliteral}{"{}Внимание: Не удалось создать журнал в "{}} << \mbox{\hyperlink{classLogger_a1b53c69a0714a6d277f6c32ceff7971e}{pathLogFile}}}
+\DoxyCodeLine{48              << \textcolor{stringliteral}{"{}. Создание журнала в /tmp/vcalc.log"{}} << endl;}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50         \mbox{\hyperlink{classLogger_a1b53c69a0714a6d277f6c32ceff7971e}{pathLogFile}} = \textcolor{stringliteral}{"{}/tmp/vcalc.log"{}};}
+\DoxyCodeLine{51         filelog.open(\mbox{\hyperlink{classLogger_a1b53c69a0714a6d277f6c32ceff7971e}{pathLogFile}}, ios\_base::out | ios\_base::app);}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53         \textcolor{keywordflow}{if} (!filelog.is\_open()) \{}
+\DoxyCodeLine{54             \textcolor{keywordflow}{throw} \mbox{\hyperlink{classlogErr}{logErr}}(\textcolor{stringliteral}{"{}Не удалось создать журнал: "{}} + \mbox{\hyperlink{classLogger_a1b53c69a0714a6d277f6c32ceff7971e}{pathLogFile}});}
+\DoxyCodeLine{55         \}}
+\DoxyCodeLine{56     \}}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58     \textcolor{keywordtype}{string} time = \mbox{\hyperlink{classLogger_a6bc7a4c23d0ffd779d771cc78f35c82b}{getLocalDateTime}}(\textcolor{stringliteral}{"{}now"{}});}
+\DoxyCodeLine{59     filelog << time << \textcolor{charliteral}{' '} << s << endl;}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61     cout << time << \textcolor{charliteral}{' '} << s << endl;}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{64 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Данные класса}
+\mbox{\Hypertarget{classLogger_a1b53c69a0714a6d277f6c32ceff7971e}\label{classLogger_a1b53c69a0714a6d277f6c32ceff7971e}} 
+\index{Logger@{Logger}!pathLogFile@{pathLogFile}}
+\index{pathLogFile@{pathLogFile}!Logger@{Logger}}
+\doxysubsubsection{\texorpdfstring{pathLogFile}{pathLogFile}}
+{\footnotesize\ttfamily string Logger\+::path\+Log\+File\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Путь к файлу лога. 
+
+
+
+Объявления и описания членов классов находятся в файлах\+:\begin{DoxyCompactItemize}
+\item 
+/home/stud/Загрузки/\+Ti\+MP/\+Ti\+MP\+\_\+\+K/headers/\mbox{\hyperlink{Logger_8h}{Logger.\+h}}\item 
+/home/stud/Загрузки/\+Ti\+MP/\+Ti\+MP\+\_\+\+K/\mbox{\hyperlink{Logger_8cpp}{Logger.\+cpp}}\end{DoxyCompactItemize}

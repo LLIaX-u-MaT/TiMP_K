@@ -1,0 +1,121 @@
+\hypertarget{classBaseConnector}{}\doxysection{Класс Base\+Connector}
+\label{classBaseConnector}\index{BaseConnector@{BaseConnector}}
+
+
+Класс для подключения к базе данных через конфигурационный файл.  
+
+
+
+
+{\ttfamily \#include $<$Data\+Base\+Handler.\+h$>$}
+
+\doxysubsection*{Открытые члены}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classBaseConnector_a6436683ab001f5856191484ea612b6c7}{base\+Connection}} (string base\+File=\char`\"{}/etc/vcalc.\+conf\char`\"{})
+\begin{DoxyCompactList}\small\item\em Подключение к базе данных. \end{DoxyCompactList}\item 
+map$<$ string, string $>$ \mbox{\hyperlink{classBaseConnector_adbfb3fecd3e1e04673ef50afb9171120}{get\+\_\+data}} ()
+\begin{DoxyCompactList}\small\item\em Получить загруженные данные. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Закрытые данные}
+\begin{DoxyCompactItemize}
+\item 
+map$<$ string, string $>$ \mbox{\hyperlink{classBaseConnector_a3f29125d7404ad3679ac1f4e26faa142}{data\+Base}}
+\begin{DoxyCompactList}\small\item\em Хранит данные, загруженные из конфигурационного файла. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Подробное описание}
+Класс для подключения к базе данных через конфигурационный файл. 
+
+Этот класс отвечает за загрузку данных из указанного конфигурационного файла и предоставляет доступ к загруженным данным. 
+
+\doxysubsection{Методы}
+\mbox{\Hypertarget{classBaseConnector_a6436683ab001f5856191484ea612b6c7}\label{classBaseConnector_a6436683ab001f5856191484ea612b6c7}} 
+\index{BaseConnector@{BaseConnector}!baseConnection@{baseConnection}}
+\index{baseConnection@{baseConnection}!BaseConnector@{BaseConnector}}
+\doxysubsubsection{\texorpdfstring{baseConnection()}{baseConnection()}}
+{\footnotesize\ttfamily int Base\+Connector\+::base\+Connection (\begin{DoxyParamCaption}\item[{string}]{base\+File = {\ttfamily \char`\"{}/etc/vcalc.conf\char`\"{}} }\end{DoxyParamCaption})}
+
+
+
+Подключение к базе данных. 
+
+Загружает данные из указанного конфигурационного файла. По умолчанию используется файл \char`\"{}/etc/vcalc.\+conf\char`\"{}.
+
+
+\begin{DoxyParams}{Аргументы}
+{\em base\+File} & Путь к конфигурационному файлу (по умолчанию \char`\"{}/etc/vcalc.\+conf\char`\"{}). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+Возвращает 0 в случае успешного подключения, или код ошибки в случае неудачи. 
+\end{DoxyReturn}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{9                                                  \{}
+\DoxyCodeLine{10   ifstream readFile(baseFile);}
+\DoxyCodeLine{11   \textcolor{keywordflow}{if} (!readFile.is\_open()) \{}
+\DoxyCodeLine{12     \textcolor{keywordflow}{throw} \mbox{\hyperlink{classcriticalDataBaseErr}{criticalDataBaseErr}}(\textcolor{stringliteral}{"{}Ошибка: База данных не найдена: "{}} + baseFile);}
+\DoxyCodeLine{13   \}}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15   \textcolor{keywordtype}{string} line;}
+\DoxyCodeLine{16   \textcolor{keywordflow}{while} (getline(readFile, line)) \{}
+\DoxyCodeLine{17     \textcolor{keyword}{auto} separator = line.find(\textcolor{charliteral}{':'});}
+\DoxyCodeLine{18     \textcolor{keywordflow}{if} (separator != string::npos) \{}
+\DoxyCodeLine{19       \textcolor{keywordtype}{string} tempLogin = line.substr(0, separator);}
+\DoxyCodeLine{20       \textcolor{keywordtype}{string} tempPass = line.substr(separator + 1);}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22       \textcolor{keywordflow}{if} (tempLogin.empty() || tempPass.empty()) \{}
+\DoxyCodeLine{23         \textcolor{keywordflow}{throw} \mbox{\hyperlink{classdataBaseErr}{dataBaseErr}}(}
+\DoxyCodeLine{24             \textcolor{stringliteral}{"{}Внимание: Обнаружена некорректная пара логин:пароль: "{}} + line);}
+\DoxyCodeLine{25       \}}
+\DoxyCodeLine{26       \mbox{\hyperlink{classBaseConnector_a3f29125d7404ad3679ac1f4e26faa142}{dataBase}}[tempLogin] = tempPass;}
+\DoxyCodeLine{27     \}}
+\DoxyCodeLine{28   \}}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30   \textcolor{keywordflow}{if} (\mbox{\hyperlink{classBaseConnector_a3f29125d7404ad3679ac1f4e26faa142}{dataBase}}.empty()) \{}
+\DoxyCodeLine{31     \textcolor{keywordflow}{throw} \mbox{\hyperlink{classcriticalDataBaseErr}{criticalDataBaseErr}}(\textcolor{stringliteral}{"{}Ошибка: База данных пустая"{}});}
+\DoxyCodeLine{32   \}}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34   \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{35 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classBaseConnector_adbfb3fecd3e1e04673ef50afb9171120}\label{classBaseConnector_adbfb3fecd3e1e04673ef50afb9171120}} 
+\index{BaseConnector@{BaseConnector}!get\_data@{get\_data}}
+\index{get\_data@{get\_data}!BaseConnector@{BaseConnector}}
+\doxysubsubsection{\texorpdfstring{get\_data()}{get\_data()}}
+{\footnotesize\ttfamily map$<$ string, string $>$ Base\+Connector\+::get\+\_\+data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Получить загруженные данные. 
+
+Возвращает карту, содержащую данные, загруженные из конфигурационного файла.
+
+\begin{DoxyReturn}{Возвращает}
+map$<$string, string$>$ Содержит ключи и значения загруженных данных. 
+\end{DoxyReturn}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{59 \{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classBaseConnector_a3f29125d7404ad3679ac1f4e26faa142}{dataBase}}; \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Данные класса}
+\mbox{\Hypertarget{classBaseConnector_a3f29125d7404ad3679ac1f4e26faa142}\label{classBaseConnector_a3f29125d7404ad3679ac1f4e26faa142}} 
+\index{BaseConnector@{BaseConnector}!dataBase@{dataBase}}
+\index{dataBase@{dataBase}!BaseConnector@{BaseConnector}}
+\doxysubsubsection{\texorpdfstring{dataBase}{dataBase}}
+{\footnotesize\ttfamily map$<$string, string$>$ Base\+Connector\+::data\+Base\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Хранит данные, загруженные из конфигурационного файла. 
+
+
+
+Объявления и описания членов классов находятся в файлах\+:\begin{DoxyCompactItemize}
+\item 
+/home/stud/Загрузки/\+Ti\+MP/\+Ti\+MP\+\_\+\+K/headers/\mbox{\hyperlink{DataBaseHandler_8h}{Data\+Base\+Handler.\+h}}\item 
+/home/stud/Загрузки/\+Ti\+MP/\+Ti\+MP\+\_\+\+K/\mbox{\hyperlink{DataBaseHandler_8cpp}{Data\+Base\+Handler.\+cpp}}\end{DoxyCompactItemize}

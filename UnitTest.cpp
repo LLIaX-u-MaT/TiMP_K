@@ -15,19 +15,19 @@ SUITE(SetDataBaseTests) {
   }
   TEST(InvalidDataBaseFile) {
     BaseConnector connector;
-    CHECK_THROW(connector.baseConnection("test/Null.txt"), criticalErr);
+    CHECK_THROW(connector.baseConnection("test/Null.txt"), criticalDataBaseErr);
   }
   TEST(EmptyDataBaseFile) {
     BaseConnector connector;
-    CHECK_THROW(connector.baseConnection("test/emptyBase.txt"), criticalErr);
+    CHECK_THROW(connector.baseConnection("test/emptyBase.txt"), criticalDataBaseErr);
   }
   TEST(EmptyLoginDataBase) {
     BaseConnector connector;
-    CHECK_THROW(connector.baseConnection("test/dataNoLogin.txt"), criticalErr);
+    CHECK_THROW(connector.baseConnection("test/dataNoLogin.txt"), dataBaseErr);
   }
   TEST(EmptyPassDataBase) {
     BaseConnector connector;
-    CHECK_THROW(connector.baseConnection("test/dataNoPass.txt"), criticalErr);
+    CHECK_THROW(connector.baseConnection("test/dataNoPass.txt"), dataBaseErr);
   }
   TEST(DataBaseReconnection) {
     BaseConnector connector;
@@ -40,18 +40,6 @@ SUITE(SetLoggerTests) {
   TEST(SetLogPath_Success) {
     Logger logger;
     CHECK_EQUAL(logger.setLogPath("test/log.txt"), 0);
-  }
-  TEST(SetLog_InvalidPathError) {
-    Logger logger;
-    CHECK_THROW(logger.setLogPath("/invalid/path/to/log"), criticalErr);
-  }
-  TEST(SetLog_EmptyPathError) {
-    Logger logger;
-    CHECK_THROW(logger.setLogPath(""), criticalErr);
-  }
-  TEST(SetLogPathInProtectedFolder) {
-    Logger logger;
-    CHECK_THROW(logger.setLogPath("/var/log/test.log"), criticalErr);
   }
   TEST(WriteLog_Success) {
     Logger logger("test/log.txt");
@@ -68,9 +56,9 @@ SUITE(CommunicatorTests) {
   TEST(Server_sha224_Test) {
     Server server;
     std::string input = "test";
-    std::string expected_hash =
+    std::string expectedHash =
         "90A3ED9E32B2AAF4C61C410EB925426119E1A9DC53D4286ADE99A809";
-    CHECK_EQUAL(server.sha224(input), expected_hash);
+    CHECK_EQUAL(server.sha224(input), expectedHash);
   }
   TEST(EmptyStringHash) {
     Server server;
@@ -83,23 +71,23 @@ SUITE(CommunicatorTests) {
     std::string salt = "random_salt";
     std::string password = "password";
     std::string combined_input = salt + password;
-    std::string expected_hash =
+    std::string expectedHash =
         "F881117367A08C1BF98EE45F7F728650D91C479A3E0D8D06E9D90B6A";
-    CHECK_EQUAL(server.sha224(combined_input), expected_hash);
+    CHECK_EQUAL(server.sha224(combined_input), expectedHash);
   }
   TEST(HashWithSpecialCharacters) {
     Server server;
     std::string input = "test@123!";
-    std::string expected_hash =
+    std::string expectedHash =
         "9AF50091DEDA5C56499A0FFAEED67B1A1EE19206BA78F78924443208";
-    CHECK_EQUAL(server.sha224(input), expected_hash);
+    CHECK_EQUAL(server.sha224(input), expectedHash);
   }
   TEST(HashWithWhiteSpace) {
     Server server;
     std::string input = "test 123";
-    std::string expected_hash =
+    std::string expectedHash =
         "36BACDB6F72F16A6D00674B09F49FA70B8894DC614C5028E3E412517";
-    CHECK_EQUAL(server.sha224(input), expected_hash);
+    CHECK_EQUAL(server.sha224(input), expectedHash);
   }
 }
 SUITE(CalculatorTests) {

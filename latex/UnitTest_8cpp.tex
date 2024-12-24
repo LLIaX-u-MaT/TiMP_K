@@ -1,0 +1,202 @@
+\hypertarget{UnitTest_8cpp}{}\doxysection{Файл /home/stud/Загрузки/\+Ti\+MP/\+Ti\+MP\+\_\+\+K/\+Unit\+Test.cpp}
+\label{UnitTest_8cpp}\index{/home/stud/Загрузки/TiMP/TiMP\_K/UnitTest.cpp@{/home/stud/Загрузки/TiMP/TiMP\_K/UnitTest.cpp}}
+{\ttfamily \#include \char`\"{}Calculator.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Data\+Base\+Handler.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Errors.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Interface.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Logger.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Server.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$Unit\+Test++/\+Unit\+Test++.\+h$>$}\newline
+{\ttfamily \#include $<$filesystem$>$}\newline
+Граф включаемых заголовочных файлов для Unit\+Test.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{UnitTest_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Функции}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{UnitTest_8cpp_aa1273268efc7c3d0ee9869f5f55979a2}{SUITE}} (Set\+Data\+Base\+Tests)
+\item 
+\mbox{\hyperlink{UnitTest_8cpp_ad4038b0b92c953c3a590e9717ae2a8f1}{SUITE}} (Set\+Logger\+Tests)
+\item 
+\mbox{\hyperlink{UnitTest_8cpp_af34ba9cd44d89d6b6c526edcc9938065}{SUITE}} (Communicator\+Tests)
+\item 
+\mbox{\hyperlink{UnitTest_8cpp_a73b2ed6706bb11d689447dab3e30bfe2}{SUITE}} (Calculator\+Tests)
+\item 
+int \mbox{\hyperlink{UnitTest_8cpp_ac0f2228420376f4db7e1274f2b41667c}{main}} (int argc, const char $\ast$argv\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Функции}
+\mbox{\Hypertarget{UnitTest_8cpp_ac0f2228420376f4db7e1274f2b41667c}\label{UnitTest_8cpp_ac0f2228420376f4db7e1274f2b41667c}} 
+\index{UnitTest.cpp@{UnitTest.cpp}!main@{main}}
+\index{main@{main}!UnitTest.cpp@{UnitTest.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{const char $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{131 \{ \textcolor{keywordflow}{return} UnitTest::RunAllTests(); \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{UnitTest_8cpp_a73b2ed6706bb11d689447dab3e30bfe2}\label{UnitTest_8cpp_a73b2ed6706bb11d689447dab3e30bfe2}} 
+\index{UnitTest.cpp@{UnitTest.cpp}!SUITE@{SUITE}}
+\index{SUITE@{SUITE}!UnitTest.cpp@{UnitTest.cpp}}
+\doxysubsubsection{\texorpdfstring{SUITE()}{SUITE()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily SUITE (\begin{DoxyParamCaption}\item[{Calculator\+Tests}]{ }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{93                        \{}
+\DoxyCodeLine{94   TEST(MultiplyPositiveNumbers) \{}
+\DoxyCodeLine{95     std::vector<int64\_t> input = \{9, 18, 27, 36\};}
+\DoxyCodeLine{96     \mbox{\hyperlink{classCalculator}{Calculator}} calculate(input);}
+\DoxyCodeLine{97     CHECK\_EQUAL(157464, calculate.sendResult());}
+\DoxyCodeLine{98   \}}
+\DoxyCodeLine{99   TEST(MultiplyNegativeNumbers) \{}
+\DoxyCodeLine{100     std::vector<int64\_t> input = \{-\/9, 18, 27, 36\};}
+\DoxyCodeLine{101     \mbox{\hyperlink{classCalculator}{Calculator}} calculate(input);}
+\DoxyCodeLine{102     CHECK\_EQUAL(-\/157464, calculate.sendResult());}
+\DoxyCodeLine{103   \}}
+\DoxyCodeLine{104   TEST(PositiveOverflow) \{}
+\DoxyCodeLine{105     std::vector<int64\_t> input = \{numeric\_limits<int64\_t>::max(), 2\};}
+\DoxyCodeLine{106     \mbox{\hyperlink{classCalculator}{Calculator}} calculate(input);}
+\DoxyCodeLine{107     CHECK\_EQUAL(9223372036854775807, calculate.sendResult());}
+\DoxyCodeLine{108   \}}
+\DoxyCodeLine{109   TEST(NegativeOverflow) \{}
+\DoxyCodeLine{110     std::vector<int64\_t> input = \{numeric\_limits<int64\_t>::min(), 2\};}
+\DoxyCodeLine{111     \mbox{\hyperlink{classCalculator}{Calculator}} calculate(input);}
+\DoxyCodeLine{112     CHECK\_EQUAL(numeric\_limits<int64\_t>::min(), calculate.sendResult());}
+\DoxyCodeLine{113   \}}
+\DoxyCodeLine{114   TEST(SingleElement) \{}
+\DoxyCodeLine{115     std::vector<int64\_t> input = \{100\};}
+\DoxyCodeLine{116     \mbox{\hyperlink{classCalculator}{Calculator}} calculate(input);}
+\DoxyCodeLine{117     CHECK\_EQUAL(100, calculate.sendResult());}
+\DoxyCodeLine{118   \}}
+\DoxyCodeLine{119   TEST(EmptyVector) \{}
+\DoxyCodeLine{120     std::vector<int64\_t> input = \{\};}
+\DoxyCodeLine{121     \mbox{\hyperlink{classCalculator}{Calculator}} calculate(input);}
+\DoxyCodeLine{122     CHECK\_EQUAL(1, calculate.sendResult());}
+\DoxyCodeLine{123   \}}
+\DoxyCodeLine{124   TEST(ZeroElement) \{}
+\DoxyCodeLine{125     std::vector<int64\_t> input = \{0, 50, 100\};}
+\DoxyCodeLine{126     \mbox{\hyperlink{classCalculator}{Calculator}} calculate(input);}
+\DoxyCodeLine{127     CHECK\_EQUAL(0, calculate.sendResult());}
+\DoxyCodeLine{128   \}}
+\DoxyCodeLine{129 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{UnitTest_8cpp_af34ba9cd44d89d6b6c526edcc9938065}\label{UnitTest_8cpp_af34ba9cd44d89d6b6c526edcc9938065}} 
+\index{UnitTest.cpp@{UnitTest.cpp}!SUITE@{SUITE}}
+\index{SUITE@{SUITE}!UnitTest.cpp@{UnitTest.cpp}}
+\doxysubsubsection{\texorpdfstring{SUITE()}{SUITE()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily SUITE (\begin{DoxyParamCaption}\item[{Communicator\+Tests}]{ }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{55                          \{}
+\DoxyCodeLine{56   TEST(Server\_sha224\_Test) \{}
+\DoxyCodeLine{57     \mbox{\hyperlink{classServer}{Server}} server;}
+\DoxyCodeLine{58     std::string input = \textcolor{stringliteral}{"{}test"{}};}
+\DoxyCodeLine{59     std::string expectedHash =}
+\DoxyCodeLine{60         \textcolor{stringliteral}{"{}90A3ED9E32B2AAF4C61C410EB925426119E1A9DC53D4286ADE99A809"{}};}
+\DoxyCodeLine{61     CHECK\_EQUAL(server.\mbox{\hyperlink{classServer_a9d4922b7739770544384d66aa5d38445}{sha224}}(input), expectedHash);}
+\DoxyCodeLine{62   \}}
+\DoxyCodeLine{63   TEST(EmptyStringHash) \{}
+\DoxyCodeLine{64     \mbox{\hyperlink{classServer}{Server}} server;}
+\DoxyCodeLine{65     std::string expected\_empty\_hash =}
+\DoxyCodeLine{66         \textcolor{stringliteral}{"{}D14A028C2A3A2BC9476102BB288234C415A2B01F828EA62AC5B3E42F"{}};}
+\DoxyCodeLine{67     CHECK\_EQUAL(expected\_empty\_hash, server.\mbox{\hyperlink{classServer_a9d4922b7739770544384d66aa5d38445}{sha224}}(\textcolor{stringliteral}{"{}"{}}));}
+\DoxyCodeLine{68   \}}
+\DoxyCodeLine{69   TEST(HashWithSalt) \{}
+\DoxyCodeLine{70     \mbox{\hyperlink{classServer}{Server}} server;}
+\DoxyCodeLine{71     std::string salt = \textcolor{stringliteral}{"{}random\_salt"{}};}
+\DoxyCodeLine{72     std::string password = \textcolor{stringliteral}{"{}password"{}};}
+\DoxyCodeLine{73     std::string combined\_input = salt + password;}
+\DoxyCodeLine{74     std::string expectedHash =}
+\DoxyCodeLine{75         \textcolor{stringliteral}{"{}F881117367A08C1BF98EE45F7F728650D91C479A3E0D8D06E9D90B6A"{}};}
+\DoxyCodeLine{76     CHECK\_EQUAL(server.\mbox{\hyperlink{classServer_a9d4922b7739770544384d66aa5d38445}{sha224}}(combined\_input), expectedHash);}
+\DoxyCodeLine{77   \}}
+\DoxyCodeLine{78   TEST(HashWithSpecialCharacters) \{}
+\DoxyCodeLine{79     \mbox{\hyperlink{classServer}{Server}} server;}
+\DoxyCodeLine{80     std::string input = \textcolor{stringliteral}{"{}test@123!"{}};}
+\DoxyCodeLine{81     std::string expectedHash =}
+\DoxyCodeLine{82         \textcolor{stringliteral}{"{}9AF50091DEDA5C56499A0FFAEED67B1A1EE19206BA78F78924443208"{}};}
+\DoxyCodeLine{83     CHECK\_EQUAL(server.\mbox{\hyperlink{classServer_a9d4922b7739770544384d66aa5d38445}{sha224}}(input), expectedHash);}
+\DoxyCodeLine{84   \}}
+\DoxyCodeLine{85   TEST(HashWithWhiteSpace) \{}
+\DoxyCodeLine{86     \mbox{\hyperlink{classServer}{Server}} server;}
+\DoxyCodeLine{87     std::string input = \textcolor{stringliteral}{"{}test 123"{}};}
+\DoxyCodeLine{88     std::string expectedHash =}
+\DoxyCodeLine{89         \textcolor{stringliteral}{"{}36BACDB6F72F16A6D00674B09F49FA70B8894DC614C5028E3E412517"{}};}
+\DoxyCodeLine{90     CHECK\_EQUAL(server.\mbox{\hyperlink{classServer_a9d4922b7739770544384d66aa5d38445}{sha224}}(input), expectedHash);}
+\DoxyCodeLine{91   \}}
+\DoxyCodeLine{92 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{UnitTest_8cpp_aa1273268efc7c3d0ee9869f5f55979a2}\label{UnitTest_8cpp_aa1273268efc7c3d0ee9869f5f55979a2}} 
+\index{UnitTest.cpp@{UnitTest.cpp}!SUITE@{SUITE}}
+\index{SUITE@{SUITE}!UnitTest.cpp@{UnitTest.cpp}}
+\doxysubsubsection{\texorpdfstring{SUITE()}{SUITE()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily SUITE (\begin{DoxyParamCaption}\item[{Set\+Data\+Base\+Tests}]{ }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{11                         \{}
+\DoxyCodeLine{12   TEST(ValidDatabaseFile) \{}
+\DoxyCodeLine{13     \mbox{\hyperlink{classBaseConnector}{BaseConnector}} connector;}
+\DoxyCodeLine{14     CHECK\_EQUAL(0, connector.\mbox{\hyperlink{classBaseConnector_a6436683ab001f5856191484ea612b6c7}{baseConnection}}(\textcolor{stringliteral}{"{}test/data.txt"{}}));}
+\DoxyCodeLine{15   \}}
+\DoxyCodeLine{16   TEST(InvalidDataBaseFile) \{}
+\DoxyCodeLine{17     \mbox{\hyperlink{classBaseConnector}{BaseConnector}} connector;}
+\DoxyCodeLine{18     CHECK\_THROW(connector.\mbox{\hyperlink{classBaseConnector_a6436683ab001f5856191484ea612b6c7}{baseConnection}}(\textcolor{stringliteral}{"{}test/Null.txt"{}}), \mbox{\hyperlink{classcriticalDataBaseErr}{criticalDataBaseErr}});}
+\DoxyCodeLine{19   \}}
+\DoxyCodeLine{20   TEST(EmptyDataBaseFile) \{}
+\DoxyCodeLine{21     \mbox{\hyperlink{classBaseConnector}{BaseConnector}} connector;}
+\DoxyCodeLine{22     CHECK\_THROW(connector.\mbox{\hyperlink{classBaseConnector_a6436683ab001f5856191484ea612b6c7}{baseConnection}}(\textcolor{stringliteral}{"{}test/emptyBase.txt"{}}), \mbox{\hyperlink{classcriticalDataBaseErr}{criticalDataBaseErr}});}
+\DoxyCodeLine{23   \}}
+\DoxyCodeLine{24   TEST(EmptyLoginDataBase) \{}
+\DoxyCodeLine{25     \mbox{\hyperlink{classBaseConnector}{BaseConnector}} connector;}
+\DoxyCodeLine{26     CHECK\_THROW(connector.\mbox{\hyperlink{classBaseConnector_a6436683ab001f5856191484ea612b6c7}{baseConnection}}(\textcolor{stringliteral}{"{}test/dataNoLogin.txt"{}}), \mbox{\hyperlink{classdataBaseErr}{dataBaseErr}});}
+\DoxyCodeLine{27   \}}
+\DoxyCodeLine{28   TEST(EmptyPassDataBase) \{}
+\DoxyCodeLine{29     \mbox{\hyperlink{classBaseConnector}{BaseConnector}} connector;}
+\DoxyCodeLine{30     CHECK\_THROW(connector.\mbox{\hyperlink{classBaseConnector_a6436683ab001f5856191484ea612b6c7}{baseConnection}}(\textcolor{stringliteral}{"{}test/dataNoPass.txt"{}}), \mbox{\hyperlink{classdataBaseErr}{dataBaseErr}});}
+\DoxyCodeLine{31   \}}
+\DoxyCodeLine{32   TEST(DataBaseReconnection) \{}
+\DoxyCodeLine{33     \mbox{\hyperlink{classBaseConnector}{BaseConnector}} connector;}
+\DoxyCodeLine{34     CHECK\_EQUAL(0, connector.\mbox{\hyperlink{classBaseConnector_a6436683ab001f5856191484ea612b6c7}{baseConnection}}(\textcolor{stringliteral}{"{}test/data.txt"{}}));}
+\DoxyCodeLine{35     CHECK\_EQUAL(0, connector.\mbox{\hyperlink{classBaseConnector_a6436683ab001f5856191484ea612b6c7}{baseConnection}}(\textcolor{stringliteral}{"{}test/data.txt"{}}));}
+\DoxyCodeLine{36   \}}
+\DoxyCodeLine{37 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{UnitTest_8cpp_ad4038b0b92c953c3a590e9717ae2a8f1}\label{UnitTest_8cpp_ad4038b0b92c953c3a590e9717ae2a8f1}} 
+\index{UnitTest.cpp@{UnitTest.cpp}!SUITE@{SUITE}}
+\index{SUITE@{SUITE}!UnitTest.cpp@{UnitTest.cpp}}
+\doxysubsubsection{\texorpdfstring{SUITE()}{SUITE()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily SUITE (\begin{DoxyParamCaption}\item[{Set\+Logger\+Tests}]{ }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{39                       \{}
+\DoxyCodeLine{40   TEST(SetLogPath\_Success) \{}
+\DoxyCodeLine{41     \mbox{\hyperlink{classLogger}{Logger}} logger;}
+\DoxyCodeLine{42     CHECK\_EQUAL(logger.\mbox{\hyperlink{classLogger_a176da0584e92500f1f272687cc93de3b}{setLogPath}}(\textcolor{stringliteral}{"{}test/log.txt"{}}), 0);}
+\DoxyCodeLine{43   \}}
+\DoxyCodeLine{44   TEST(WriteLog\_Success) \{}
+\DoxyCodeLine{45     \mbox{\hyperlink{classLogger}{Logger}} logger(\textcolor{stringliteral}{"{}test/log.txt"{}});}
+\DoxyCodeLine{46     CHECK\_EQUAL(0, logger.writelog(\textcolor{stringliteral}{"{}Это тест логирования журнала"{}}));}
+\DoxyCodeLine{47   \}}
+\DoxyCodeLine{48   TEST(MultipleWriteLog\_Success) \{}
+\DoxyCodeLine{49     \mbox{\hyperlink{classLogger}{Logger}} logger(\textcolor{stringliteral}{"{}test/log.txt"{}});}
+\DoxyCodeLine{50     CHECK\_EQUAL(0, logger.writelog(\textcolor{stringliteral}{"{}Это тест логирования журнала 1"{}}));}
+\DoxyCodeLine{51     CHECK\_EQUAL(0, logger.writelog(\textcolor{stringliteral}{"{}Это тест логирования журнала 2"{}}));}
+\DoxyCodeLine{52   \}}
+\DoxyCodeLine{53 \}}
+
+\end{DoxyCode}

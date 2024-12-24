@@ -1,3 +1,9 @@
+/**
+ * @file Interface.cpp
+ * @brief Определение класса UserInterface для работы с пользовательским интерфейсом приложения.
+ *
+ */
+ 
 #include "Interface.h"
 
 namespace po = boost::program_options;
@@ -55,8 +61,6 @@ int UserInterface::interface(int argc, const char **argv) {
     Server connect;
     connect.connection(port, bc.get_data(), &log);
 
-  } catch (criticalErr &e) {
-    cerr << "Критическая ошибка: " << e.what() << endl;
   } catch (const po::error &e) {
     cerr << "Ошибка Boost: " << e.what() << endl;
     return 1;

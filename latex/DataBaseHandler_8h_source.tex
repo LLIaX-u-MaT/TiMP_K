@@ -1,0 +1,29 @@
+\hypertarget{DataBaseHandler_8h_source}{}\doxysection{Data\+Base\+Handler.\+h}
+\label{DataBaseHandler_8h_source}\index{/home/stud/Загрузки/TiMP/TiMP\_K/headers/DataBaseHandler.h@{/home/stud/Загрузки/TiMP/TiMP\_K/headers/DataBaseHandler.h}}
+\mbox{\hyperlink{DataBaseHandler_8h}{См. документацию.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{Errors_8h}{Errors.h}}"{}}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{Logger_8h}{Logger.h}}"{}}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <fstream>}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#include <map>}}
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 \textcolor{keyword}{using namespace }std;}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{32 \textcolor{keyword}{class }\mbox{\hyperlink{classBaseConnector}{BaseConnector}} \{}
+\DoxyCodeLine{33 \textcolor{keyword}{private}:}
+\DoxyCodeLine{34   map<string, string>}
+\DoxyCodeLine{35       \mbox{\hyperlink{classBaseConnector_a3f29125d7404ad3679ac1f4e26faa142}{dataBase}}; }
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37 \textcolor{keyword}{public}:}
+\DoxyCodeLine{49   \textcolor{keywordtype}{int} \mbox{\hyperlink{classBaseConnector_a6436683ab001f5856191484ea612b6c7}{baseConnection}}(\textcolor{keywordtype}{string} baseFile = \textcolor{stringliteral}{"{}/etc/vcalc.conf"{}});}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{59   map<string, string> \mbox{\hyperlink{classBaseConnector_adbfb3fecd3e1e04673ef50afb9171120}{get\_data}}() \{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classBaseConnector_a3f29125d7404ad3679ac1f4e26faa142}{dataBase}}; \}}
+\DoxyCodeLine{60 \};}
+
+\end{DoxyCode}

@@ -1,0 +1,204 @@
+\hypertarget{classServer}{}\doxysection{Класс Server}
+\label{classServer}\index{Server@{Server}}
+
+
+Класс для работы с серверными функциями.  
+
+
+
+
+{\ttfamily \#include $<$Server.\+h$>$}
+
+\doxysubsection*{Открытые члены}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{classServer_a9d4922b7739770544384d66aa5d38445}{sha224}} (const std\+::string \&input\+\_\+str)
+\begin{DoxyCompactList}\small\item\em Вычисление SHA224 хеша для заданной строки. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classServer_a31081b1ad7c7bd7a4818ab72b737a1e7}{connection}} (int port, std\+::map$<$ std\+::string, std\+::string $>$ data\+File\+Name, \mbox{\hyperlink{classLogger}{Logger}} $\ast$log)
+\begin{DoxyCompactList}\small\item\em Установка соединения на заданном порту. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Подробное описание}
+Класс для работы с серверными функциями. 
+
+Класс \mbox{\hyperlink{classServer}{Server}} предоставляет методы для вычисления SHA224 хешей и обработки сетевых соединений. 
+
+\doxysubsection{Методы}
+\mbox{\Hypertarget{classServer_a31081b1ad7c7bd7a4818ab72b737a1e7}\label{classServer_a31081b1ad7c7bd7a4818ab72b737a1e7}} 
+\index{Server@{Server}!connection@{connection}}
+\index{connection@{connection}!Server@{Server}}
+\doxysubsubsection{\texorpdfstring{connection()}{connection()}}
+{\footnotesize\ttfamily int Server\+::connection (\begin{DoxyParamCaption}\item[{int}]{port,  }\item[{std\+::map$<$ std\+::string, std\+::string $>$}]{data\+File\+Name,  }\item[{\mbox{\hyperlink{classLogger}{Logger}} $\ast$}]{log }\end{DoxyParamCaption})}
+
+
+
+Установка соединения на заданном порту. 
+
+Этот метод устанавливает соединение на указанном порту и обрабатывает данные из файла, используя переданный логгер для ведения логов.
+
+
+\begin{DoxyParams}{Аргументы}
+{\em port} & Порт для установки соединения. \\
+\hline
+{\em data\+File\+Name} & Карта, содержащая данные файлов с именами. \\
+\hline
+{\em log} & Указатель на объект \mbox{\hyperlink{classLogger}{Logger}} для ведения логов. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+Возвращает 0 при успешном соединении, иначе -\/1. 
+\end{DoxyReturn}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{18                                     \{}
+\DoxyCodeLine{19   \textcolor{keywordflow}{try} \{}
+\DoxyCodeLine{20     \textcolor{keywordtype}{int} queue\_len = 100;}
+\DoxyCodeLine{21     sockaddr\_in addr;}
+\DoxyCodeLine{22     addr.sin\_family = AF\_INET;}
+\DoxyCodeLine{23     addr.sin\_port = htons(port);}
+\DoxyCodeLine{24     inet\_aton(\textcolor{stringliteral}{"{}127.0.0.1"{}}, \&addr.sin\_addr);}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26     \textcolor{keywordtype}{int} s = socket(AF\_INET, SOCK\_STREAM, 0);}
+\DoxyCodeLine{27     \textcolor{keywordflow}{if} (s < 0) \{}
+\DoxyCodeLine{28       \textcolor{keywordflow}{throw} \mbox{\hyperlink{classcriticalErr}{criticalErr}}(\textcolor{stringliteral}{"{}Ошибка создания сокета"{}});}
+\DoxyCodeLine{29     \}}
+\DoxyCodeLine{30     log-\/>\mbox{\hyperlink{classLogger_a727b7ada4774b2ef62c124c0a6f55db9}{writelog}}(\textcolor{stringliteral}{"{}Сокет прослушивания создан"{}});}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32     \textcolor{keywordflow}{if} (bind(s, (\textcolor{keyword}{const} sockaddr *)\&addr, \textcolor{keyword}{sizeof}(sockaddr\_in)) < 0) \{}
+\DoxyCodeLine{33       \textcolor{keywordtype}{string} error\_message = strerror(errno);}
+\DoxyCodeLine{34       \textcolor{keywordflow}{throw} \mbox{\hyperlink{classcriticalErr}{criticalErr}}(\textcolor{stringliteral}{"{}Ошибка связывания сокетов: "{}} + error\_message);}
+\DoxyCodeLine{35     \}}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37     \textcolor{keywordflow}{if} (listen(s, queue\_len) < 0) \{}
+\DoxyCodeLine{38       \textcolor{keywordflow}{throw} \mbox{\hyperlink{classcriticalErr}{criticalErr}}(\textcolor{stringliteral}{"{}Ошибка прослушивания сокета"{}});}
+\DoxyCodeLine{39     \}}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41     \textcolor{keywordflow}{while} (\textcolor{keyword}{true}) \{}
+\DoxyCodeLine{42       sockaddr\_in client\_addr;}
+\DoxyCodeLine{43       socklen\_t len = \textcolor{keyword}{sizeof}(sockaddr\_in);}
+\DoxyCodeLine{44       \textcolor{keywordtype}{int} handler\_socket = accept(s, (sockaddr *)\&client\_addr, \&len);}
+\DoxyCodeLine{45       \textcolor{keywordflow}{if} (handler\_socket < 0) \{}
+\DoxyCodeLine{46         log-\/>\mbox{\hyperlink{classLogger_a727b7ada4774b2ef62c124c0a6f55db9}{writelog}}(\textcolor{stringliteral}{"{}Ошибка сокета клиента"{}});}
+\DoxyCodeLine{47         \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{48       \}}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50       \textcolor{keywordtype}{char} buff[1024] = \{\};}
+\DoxyCodeLine{51       ssize\_t rc = recv(handler\_socket, buff, \textcolor{keyword}{sizeof}(buff) -\/ 1, 0);}
+\DoxyCodeLine{52       \textcolor{keywordflow}{if} (rc <= 0) \{}
+\DoxyCodeLine{53         close(handler\_socket);}
+\DoxyCodeLine{54         \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{55       \}}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57       \textcolor{keywordflow}{if} (rc < 72) \{}
+\DoxyCodeLine{58         send(handler\_socket, \textcolor{stringliteral}{"{}ERR"{}}, 3, 0);}
+\DoxyCodeLine{59         close(handler\_socket);}
+\DoxyCodeLine{60         \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{61       \}}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63       \textcolor{keywordtype}{string} hashReceived(buff + rc -\/ 56, 56);}
+\DoxyCodeLine{64       \textcolor{keywordtype}{string} salt(buff + rc -\/ 72, 16);}
+\DoxyCodeLine{65       \textcolor{keywordtype}{string} login(buff, rc -\/ 72);}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{67       log-\/>\mbox{\hyperlink{classLogger_a727b7ada4774b2ef62c124c0a6f55db9}{writelog}}(\textcolor{stringliteral}{"{}Полученный логин: "{}} + login);}
+\DoxyCodeLine{68       log-\/>\mbox{\hyperlink{classLogger_a727b7ada4774b2ef62c124c0a6f55db9}{writelog}}(\textcolor{stringliteral}{"{}Полученный соль: "{}} + salt);}
+\DoxyCodeLine{69       log-\/>\mbox{\hyperlink{classLogger_a727b7ada4774b2ef62c124c0a6f55db9}{writelog}}(\textcolor{stringliteral}{"{}Полученный хэш: "{}} + hashReceived);}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71       \textcolor{keyword}{auto} it = dataFileName.find(login);}
+\DoxyCodeLine{72       \textcolor{keywordflow}{if} (it == dataFileName.end()) \{}
+\DoxyCodeLine{73         send(handler\_socket, \textcolor{stringliteral}{"{}ERR"{}}, 3, 0);}
+\DoxyCodeLine{74         log-\/>\mbox{\hyperlink{classLogger_a727b7ada4774b2ef62c124c0a6f55db9}{writelog}}(\textcolor{stringliteral}{"{}Ошибка: Клиент не прошёл аутентификацию"{}});}
+\DoxyCodeLine{75         close(handler\_socket);}
+\DoxyCodeLine{76         \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{77       \}}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{79       \textcolor{keywordtype}{string} expectedHash = \mbox{\hyperlink{classServer_a9d4922b7739770544384d66aa5d38445}{sha224}}(salt + it-\/>second);}
+\DoxyCodeLine{80       log-\/>\mbox{\hyperlink{classLogger_a727b7ada4774b2ef62c124c0a6f55db9}{writelog}}(\textcolor{stringliteral}{"{}Ожидаемый хэш: "{}} + expectedHash);}
+\DoxyCodeLine{81       \textcolor{keywordflow}{if} (expectedHash != hashReceived) \{}
+\DoxyCodeLine{82         send(handler\_socket, \textcolor{stringliteral}{"{}ERR"{}}, 3, 0);}
+\DoxyCodeLine{83         log-\/>\mbox{\hyperlink{classLogger_a727b7ada4774b2ef62c124c0a6f55db9}{writelog}}(\textcolor{stringliteral}{"{}Ошибка: Клиент не прошёл аутентификацию"{}});}
+\DoxyCodeLine{84         close(handler\_socket);}
+\DoxyCodeLine{85         \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{86       \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{87         send(handler\_socket, \textcolor{stringliteral}{"{}OK"{}}, 2, 0);}
+\DoxyCodeLine{88         log-\/>\mbox{\hyperlink{classLogger_a727b7ada4774b2ef62c124c0a6f55db9}{writelog}}(\textcolor{stringliteral}{"{}Аутентификация клиента произошла успешно: "{}} + login);}
+\DoxyCodeLine{89       \}}
+\DoxyCodeLine{90 }
+\DoxyCodeLine{91       uint32\_t vector\_count;}
+\DoxyCodeLine{92       \textcolor{keywordflow}{if} (recv(handler\_socket, \&vector\_count, \textcolor{keyword}{sizeof}(vector\_count), 0) <= 0) \{}
+\DoxyCodeLine{93         log-\/>\mbox{\hyperlink{classLogger_a727b7ada4774b2ef62c124c0a6f55db9}{writelog}}(\textcolor{stringliteral}{"{}Ошибка: Ошибка получения количества векторов"{}});}
+\DoxyCodeLine{94         close(handler\_socket);}
+\DoxyCodeLine{95         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{96       \}}
+\DoxyCodeLine{97 }
+\DoxyCodeLine{98       \textcolor{keywordflow}{for} (uint32\_t i = 0; i < vector\_count; i++) \{}
+\DoxyCodeLine{99         uint32\_t vector\_size;}
+\DoxyCodeLine{100         \textcolor{keywordflow}{if} (recv(handler\_socket, \&vector\_size, \textcolor{keyword}{sizeof}(vector\_size), 0) <= 0) \{}
+\DoxyCodeLine{101           log-\/>\mbox{\hyperlink{classLogger_a727b7ada4774b2ef62c124c0a6f55db9}{writelog}}(\textcolor{stringliteral}{"{}Ошибка: Ошибка получения размера вектора"{}});}
+\DoxyCodeLine{102           close(handler\_socket);}
+\DoxyCodeLine{103           \textcolor{keywordflow}{break};}
+\DoxyCodeLine{104         \}}
+\DoxyCodeLine{105 }
+\DoxyCodeLine{106         vector<int64\_t> vector\_values(vector\_size);}
+\DoxyCodeLine{107         ssize\_t received\_bytes = recv(handler\_socket, vector\_values.data(),}
+\DoxyCodeLine{108                                       vector\_size * \textcolor{keyword}{sizeof}(int64\_t), 0);}
+\DoxyCodeLine{109         \textcolor{keywordflow}{if} (received\_bytes <= 0 ||}
+\DoxyCodeLine{110             received\_bytes !=}
+\DoxyCodeLine{111                 \textcolor{keyword}{static\_cast<}ssize\_t\textcolor{keyword}{>}(vector\_size * \textcolor{keyword}{sizeof}(int64\_t))) \{}
+\DoxyCodeLine{112           log-\/>\mbox{\hyperlink{classLogger_a727b7ada4774b2ef62c124c0a6f55db9}{writelog}}(\textcolor{stringliteral}{"{}Ошибка: Ошибка получения данных вектора"{}});}
+\DoxyCodeLine{113           close(handler\_socket);}
+\DoxyCodeLine{114           \textcolor{keywordflow}{break};}
+\DoxyCodeLine{115         \}}
+\DoxyCodeLine{116 }
+\DoxyCodeLine{117         \mbox{\hyperlink{classCalculator}{Calculator}} calculate(vector\_values);}
+\DoxyCodeLine{118         int64\_t multiply = calculate.sendResult();}
+\DoxyCodeLine{119         send(handler\_socket, \&multiply, \textcolor{keyword}{sizeof}(multiply), 0);}
+\DoxyCodeLine{120       \}}
+\DoxyCodeLine{121 }
+\DoxyCodeLine{122       close(handler\_socket);}
+\DoxyCodeLine{123     \}}
+\DoxyCodeLine{124   \} \textcolor{keywordflow}{catch} (\textcolor{keyword}{const} \mbox{\hyperlink{classcriticalErr}{criticalErr}} \&e) \{}
+\DoxyCodeLine{125     log-\/>\mbox{\hyperlink{classLogger_a727b7ada4774b2ef62c124c0a6f55db9}{writelog}}(\textcolor{stringliteral}{"{}Критическая ошибка: "{}} + \textcolor{keywordtype}{string}(e.what()));}
+\DoxyCodeLine{126     \textcolor{keywordflow}{return} -\/1;}
+\DoxyCodeLine{127   \}}
+\DoxyCodeLine{128   \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{129 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classServer_a9d4922b7739770544384d66aa5d38445}\label{classServer_a9d4922b7739770544384d66aa5d38445}} 
+\index{Server@{Server}!sha224@{sha224}}
+\index{sha224@{sha224}!Server@{Server}}
+\doxysubsubsection{\texorpdfstring{sha224()}{sha224()}}
+{\footnotesize\ttfamily string Server\+::sha224 (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{input\+\_\+str }\end{DoxyParamCaption})}
+
+
+
+Вычисление SHA224 хеша для заданной строки. 
+
+Этот метод принимает строку, вычисляет ее SHA224 хеш и возвращает его в виде шестнадцатеричной строки.
+
+
+\begin{DoxyParams}{Аргументы}
+{\em input\+\_\+str} & Входная строка для вычисления хеша. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+Шестнадцатеричная строка, представляющая SHA224 хеш. 
+\end{DoxyReturn}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{8                                              \{}
+\DoxyCodeLine{9   \textcolor{keyword}{using namespace }CryptoPP;}
+\DoxyCodeLine{10   SHA224 hash;}
+\DoxyCodeLine{11   \textcolor{keywordtype}{string} new\_hash;}
+\DoxyCodeLine{12   StringSource(input\_str, \textcolor{keyword}{true},}
+\DoxyCodeLine{13                \textcolor{keyword}{new} HashFilter(hash, \textcolor{keyword}{new} HexEncoder(\textcolor{keyword}{new} StringSink(new\_hash))));}
+\DoxyCodeLine{14   \textcolor{keywordflow}{return} new\_hash;}
+\DoxyCodeLine{15 \}}
+
+\end{DoxyCode}
+
+
+Объявления и описания членов классов находятся в файлах\+:\begin{DoxyCompactItemize}
+\item 
+/home/stud/Загрузки/\+Ti\+MP/\+Ti\+MP\+\_\+\+K/headers/\mbox{\hyperlink{Server_8h}{Server.\+h}}\item 
+/home/stud/Загрузки/\+Ti\+MP/\+Ti\+MP\+\_\+\+K/\mbox{\hyperlink{Server_8cpp}{Server.\+cpp}}\end{DoxyCompactItemize}

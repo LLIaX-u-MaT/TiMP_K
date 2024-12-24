@@ -3,7 +3,7 @@
 Compiler = g++
 RELEASE_FLAGS = -O2 -Wall -DNDEBUG -Iheaders
 DEBUG_FLAGS   = -g -O0 -Wall -Iheaders
-RELEASE_EXEC  = kurs
+RELEASE_EXEC  = ServerMultiply
 TEST_EXEC     = UnitTest
 SOURCES       = Calculator.cpp DataBaseHandler.cpp Interface.cpp Logger.cpp Server.cpp
 LIBRARY       = -lboost_program_options -lcryptopp

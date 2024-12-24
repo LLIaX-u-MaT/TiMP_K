@@ -1,0 +1,132 @@
+\hypertarget{classCalculator}{}\doxysection{Класс Calculator}
+\label{classCalculator}\index{Calculator@{Calculator}}
+
+
+Класс для выполнения расчетов с вектором целых чисел.  
+
+
+
+
+{\ttfamily \#include $<$Calculator.\+h$>$}
+
+\doxysubsection*{Открытые члены}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classCalculator_a9b81cd9612b48fc2ee962112b9e87730}{Calculator}} (vector$<$ int64\+\_\+t $>$ input\+Vector)
+\begin{DoxyCompactList}\small\item\em Конструктор класса \mbox{\hyperlink{classCalculator}{Calculator}}. \end{DoxyCompactList}\item 
+int64\+\_\+t \mbox{\hyperlink{classCalculator_a7c901c3736f313250c0034e3abebd61f}{send\+Result}} () const
+\begin{DoxyCompactList}\small\item\em Получить конечный результат вычислений. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Закрытые данные}
+\begin{DoxyCompactItemize}
+\item 
+int64\+\_\+t \mbox{\hyperlink{classCalculator_a6b3ddbdf4c424343524a86311b6164bf}{final\+Result}}
+\begin{DoxyCompactList}\small\item\em Хранит конечный результат вычислений. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Подробное описание}
+Класс для выполнения расчетов с вектором целых чисел. 
+
+Этот класс принимает вектор целых чисел в качестве входных данных, выполняет необходимые вычисления и предоставляет метод для получения конечного результата. 
+
+\doxysubsection{Конструктор(ы)}
+\mbox{\Hypertarget{classCalculator_a9b81cd9612b48fc2ee962112b9e87730}\label{classCalculator_a9b81cd9612b48fc2ee962112b9e87730}} 
+\index{Calculator@{Calculator}!Calculator@{Calculator}}
+\index{Calculator@{Calculator}!Calculator@{Calculator}}
+\doxysubsubsection{\texorpdfstring{Calculator()}{Calculator()}}
+{\footnotesize\ttfamily Calculator\+::\+Calculator (\begin{DoxyParamCaption}\item[{vector$<$ int64\+\_\+t $>$}]{input\+Vector }\end{DoxyParamCaption})}
+
+
+
+Конструктор класса \mbox{\hyperlink{classCalculator}{Calculator}}. 
+
+Принимает вектор целых чисел и выполняет необходимые вычисления, чтобы установить значение final\+Result.
+
+
+\begin{DoxyParams}{Аргументы}
+{\em input\+Vector} & Вектор целых чисел для обработки. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Исключения}
+{\em std\+::invalid\+\_\+argument} & Если вектор пуст или содержит недопустимые значения. \\
+\hline
+\end{DoxyExceptions}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{8                                                      \{}
+\DoxyCodeLine{9   \textcolor{keywordflow}{try} \{}
+\DoxyCodeLine{10     int64\_t result = 1;}
+\DoxyCodeLine{11     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} item : inputVector) \{}
+\DoxyCodeLine{12       \textcolor{keywordflow}{if} (item == 0) \{}
+\DoxyCodeLine{13         \mbox{\hyperlink{classCalculator_a6b3ddbdf4c424343524a86311b6164bf}{finalResult}} = 0;}
+\DoxyCodeLine{14         \textcolor{keywordflow}{return};}
+\DoxyCodeLine{15       \}}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17       \textcolor{keywordflow}{if} (result > 0 \&\& item > 0 \&\&}
+\DoxyCodeLine{18           result > std::numeric\_limits<int64\_t>::max() / item) \{}
+\DoxyCodeLine{19         \textcolor{keywordflow}{throw} boost::numeric::positive\_overflow();}
+\DoxyCodeLine{20       \}}
+\DoxyCodeLine{21       \textcolor{keywordflow}{if} (result > 0 \&\& item < 0 \&\&}
+\DoxyCodeLine{22           item < std::numeric\_limits<int64\_t>::min() / result) \{}
+\DoxyCodeLine{23         \textcolor{keywordflow}{throw} boost::numeric::negative\_overflow();}
+\DoxyCodeLine{24       \}}
+\DoxyCodeLine{25       \textcolor{keywordflow}{if} (result < 0 \&\& item > 0 \&\&}
+\DoxyCodeLine{26           result < std::numeric\_limits<int64\_t>::min() / item) \{}
+\DoxyCodeLine{27         \textcolor{keywordflow}{throw} boost::numeric::negative\_overflow();}
+\DoxyCodeLine{28       \}}
+\DoxyCodeLine{29       \textcolor{keywordflow}{if} (result < 0 \&\& item < 0 \&\&}
+\DoxyCodeLine{30           result < std::numeric\_limits<int64\_t>::max() / item) \{}
+\DoxyCodeLine{31             \textcolor{keywordflow}{throw} boost::numeric::positive\_overflow();}
+\DoxyCodeLine{32           \}}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34       result *= item;}
+\DoxyCodeLine{35     \}}
+\DoxyCodeLine{36     \mbox{\hyperlink{classCalculator_a6b3ddbdf4c424343524a86311b6164bf}{finalResult}} = result;}
+\DoxyCodeLine{37   \} \textcolor{keywordflow}{catch} (\textcolor{keyword}{const} boost::numeric::positive\_overflow \&) \{}
+\DoxyCodeLine{38     \mbox{\hyperlink{classCalculator_a6b3ddbdf4c424343524a86311b6164bf}{finalResult}} = std::numeric\_limits<int64\_t>::max();}
+\DoxyCodeLine{39   \} \textcolor{keywordflow}{catch} (\textcolor{keyword}{const} boost::numeric::negative\_overflow \&) \{}
+\DoxyCodeLine{40     \mbox{\hyperlink{classCalculator_a6b3ddbdf4c424343524a86311b6164bf}{finalResult}} = std::numeric\_limits<int64\_t>::min();}
+\DoxyCodeLine{41   \}}
+\DoxyCodeLine{42 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Методы}
+\mbox{\Hypertarget{classCalculator_a7c901c3736f313250c0034e3abebd61f}\label{classCalculator_a7c901c3736f313250c0034e3abebd61f}} 
+\index{Calculator@{Calculator}!sendResult@{sendResult}}
+\index{sendResult@{sendResult}!Calculator@{Calculator}}
+\doxysubsubsection{\texorpdfstring{sendResult()}{sendResult()}}
+{\footnotesize\ttfamily int64\+\_\+t Calculator\+::send\+Result (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Получить конечный результат вычислений. 
+
+\begin{DoxyReturn}{Возвращает}
+Возвращает значение final\+Result. 
+\end{DoxyReturn}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{44 \{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classCalculator_a6b3ddbdf4c424343524a86311b6164bf}{finalResult}}; \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Данные класса}
+\mbox{\Hypertarget{classCalculator_a6b3ddbdf4c424343524a86311b6164bf}\label{classCalculator_a6b3ddbdf4c424343524a86311b6164bf}} 
+\index{Calculator@{Calculator}!finalResult@{finalResult}}
+\index{finalResult@{finalResult}!Calculator@{Calculator}}
+\doxysubsubsection{\texorpdfstring{finalResult}{finalResult}}
+{\footnotesize\ttfamily int64\+\_\+t Calculator\+::final\+Result\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Хранит конечный результат вычислений. 
+
+
+
+Объявления и описания членов классов находятся в файлах\+:\begin{DoxyCompactItemize}
+\item 
+/home/stud/Загрузки/\+Ti\+MP/\+Ti\+MP\+\_\+\+K/headers/\mbox{\hyperlink{Calculator_8h}{Calculator.\+h}}\item 
+/home/stud/Загрузки/\+Ti\+MP/\+Ti\+MP\+\_\+\+K/\mbox{\hyperlink{Calculator_8cpp}{Calculator.\+cpp}}\end{DoxyCompactItemize}

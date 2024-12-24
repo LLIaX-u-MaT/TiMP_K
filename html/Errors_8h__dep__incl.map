@@ -1,0 +1,13 @@
+<map id="/home/stud/Загрузки/TiMP/TiMP_K/headers/Errors.h" name="/home/stud/Загрузки/TiMP/TiMP_K/headers/Errors.h">
+<area shape="rect" id="node1" title="Определение классов ошибок для обработки исключений в приложении." alt="" coords="337,5,557,47"/>
+<area shape="rect" id="node2" href="$UnitTest_8cpp.html" title=" " alt="" coords="242,363,436,404"/>
+<area shape="rect" id="node3" href="$DataBaseHandler_8h.html" title="Определение класса BaseConnector для работы с конфигурационными файлами." alt="" coords="25,184,320,225"/>
+<area shape="rect" id="node5" href="$Interface_8h.html" title="Определение класса UserInterface для работы с пользовательским интерфейсом приложения." alt="" coords="440,273,680,315"/>
+<area shape="rect" id="node7" href="$main_8cpp.html" title=" " alt="" coords="684,363,858,404"/>
+<area shape="rect" id="node8" href="$Logger_8h.html" title="Определение класса Logger для ведения логов приложения." alt="" coords="425,95,650,136"/>
+<area shape="rect" id="node10" href="$Server_8h.html" title="Определение класса Server для работы с серверными функциями." alt="" coords="754,184,977,225"/>
+<area shape="rect" id="node4" href="$DataBaseHandler_8cpp.html" title="Определение класса BaseConnector для работы с конфигурационными файлами." alt="" coords="60,273,314,315"/>
+<area shape="rect" id="node6" href="$Interface_8cpp.html" title="Определение класса UserInterface для работы с пользовательским интерфейсом приложения." alt="" coords="461,363,660,404"/>
+<area shape="rect" id="node9" href="$Logger_8cpp.html" title="Определение класса Logger для ведения логов приложения." alt="" coords="446,184,630,225"/>
+<area shape="rect" id="node11" href="$Server_8cpp.html" title="Определение класса Server для работы с серверными функциями." alt="" coords="806,273,989,315"/>
+</map>

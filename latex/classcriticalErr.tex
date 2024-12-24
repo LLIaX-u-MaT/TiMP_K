@@ -1,0 +1,69 @@
+\hypertarget{classcriticalErr}{}\doxysection{Класс critical\+Err}
+\label{classcriticalErr}\index{criticalErr@{criticalErr}}
+
+
+Класс для обработки критических ошибок.  
+
+
+
+
+{\ttfamily \#include $<$Errors.\+h$>$}
+
+
+
+Граф наследования\+:critical\+Err\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=184pt]{classcriticalErr__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Граф связей класса critical\+Err\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=184pt]{classcriticalErr__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Открытые члены}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcriticalErr_a10159d10cb0222c1b9656e2d6d609b21}{critical\+Err}} (const std\+::string \&message)
+\begin{DoxyCompactList}\small\item\em Конструктор для создания объекта \mbox{\hyperlink{classcriticalErr}{critical\+Err}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Подробное описание}
+Класс для обработки критических ошибок. 
+
+Этот класс наследуется от std\+::runtime\+\_\+error и используется для представления критических ошибок, которые могут повлиять на выполнение приложения. 
+
+\doxysubsection{Конструктор(ы)}
+\mbox{\Hypertarget{classcriticalErr_a10159d10cb0222c1b9656e2d6d609b21}\label{classcriticalErr_a10159d10cb0222c1b9656e2d6d609b21}} 
+\index{criticalErr@{criticalErr}!criticalErr@{criticalErr}}
+\index{criticalErr@{criticalErr}!criticalErr@{criticalErr}}
+\doxysubsubsection{\texorpdfstring{criticalErr()}{criticalErr()}}
+{\footnotesize\ttfamily critical\+Err\+::critical\+Err (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{message }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+Конструктор для создания объекта \mbox{\hyperlink{classcriticalErr}{critical\+Err}}. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em message} & Сообщение об ошибке. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{89         : std::runtime\_error(message) \{\}}
+
+\end{DoxyCode}
+
+
+Объявления и описания членов класса находятся в файле\+:\begin{DoxyCompactItemize}
+\item 
+/home/stud/Загрузки/\+Ti\+MP/\+Ti\+MP\+\_\+\+K/headers/\mbox{\hyperlink{Errors_8h}{Errors.\+h}}\end{DoxyCompactItemize}

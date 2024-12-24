@@ -1,0 +1,35 @@
+\hypertarget{Logger_8h_source}{}\doxysection{Logger.\+h}
+\label{Logger_8h_source}\index{/home/stud/Загрузки/TiMP/TiMP\_K/headers/Logger.h@{/home/stud/Загрузки/TiMP/TiMP\_K/headers/Logger.h}}
+\mbox{\hyperlink{Logger_8h}{См. документацию.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{Errors_8h}{Errors.h}}"{}}}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <chrono>}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#include <fstream>}}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include <stdexcept>}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#include <time.h>}}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 \textcolor{keyword}{using namespace }std;}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{32 \textcolor{keyword}{class }\mbox{\hyperlink{classLogger}{Logger}} \{}
+\DoxyCodeLine{33 \textcolor{keyword}{private}:}
+\DoxyCodeLine{42   \textcolor{keyword}{static} \textcolor{keywordtype}{string} \mbox{\hyperlink{classLogger_a6bc7a4c23d0ffd779d771cc78f35c82b}{getLocalDateTime}}(\textcolor{keywordtype}{string} s);}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44   \textcolor{keywordtype}{string} \mbox{\hyperlink{classLogger_a1b53c69a0714a6d277f6c32ceff7971e}{pathLogFile}}; }
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46 \textcolor{keyword}{public}:}
+\DoxyCodeLine{56   \textcolor{keywordtype}{int} \mbox{\hyperlink{classLogger_a727b7ada4774b2ef62c124c0a6f55db9}{writelog}}(\textcolor{keywordtype}{string} s);}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{66   \textcolor{keywordtype}{int} \mbox{\hyperlink{classLogger_a176da0584e92500f1f272687cc93de3b}{setLogPath}}(\textcolor{keywordtype}{string} pathFile);}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{73   \mbox{\hyperlink{classLogger_abc41bfb031d896170c7675fa96a6b30c}{Logger}}() \{ \mbox{\hyperlink{classLogger_a1b53c69a0714a6d277f6c32ceff7971e}{pathLogFile}} = \textcolor{stringliteral}{"{} "{}}; \};}
+\DoxyCodeLine{74 }
+\DoxyCodeLine{82   \mbox{\hyperlink{classLogger_a69ca6365b71e06fc145b8db6e4ee8f3d}{Logger}}(\textcolor{keywordtype}{string} s) \{ \mbox{\hyperlink{classLogger_a1b53c69a0714a6d277f6c32ceff7971e}{pathLogFile}} = s; \};}
+\DoxyCodeLine{83 \};}
+
+\end{DoxyCode}

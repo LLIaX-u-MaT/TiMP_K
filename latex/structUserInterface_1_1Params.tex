@@ -1,0 +1,125 @@
+\hypertarget{structUserInterface_1_1Params}{}\doxysection{Структура User\+Interface\+::Params}
+\label{structUserInterface_1_1Params}\index{UserInterface::Params@{UserInterface::Params}}
+
+
+Структура для хранения параметров приложения.  
+
+
+\doxysubsection*{Открытые члены}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{structUserInterface_1_1Params_a92f3955a56510522b534aa396c7ad5ce}{p\+\_\+default}} () const
+\begin{DoxyCompactList}\small\item\em Проверка значения порта по умолчанию. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structUserInterface_1_1Params_ad02f640ca89fc022901b231b38b86485}{d\+\_\+default}} () const
+\begin{DoxyCompactList}\small\item\em Проверка значения пути к файлу конфигурации по умолчанию. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structUserInterface_1_1Params_a7665d2530e4d07e63e0706324e69529d}{l\+\_\+default}} () const
+\begin{DoxyCompactList}\small\item\em Проверка значения пути к файлу логирования по умолчанию. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Открытые атрибуты}
+\begin{DoxyCompactItemize}
+\item 
+string \mbox{\hyperlink{structUserInterface_1_1Params_a6e822ec952167c94c445e2d672d5757b}{d}}
+\begin{DoxyCompactList}\small\item\em Путь к файлу конфигурации. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{structUserInterface_1_1Params_a63431cf1a50f2bd7e4a2867455a86219}{l}}
+\begin{DoxyCompactList}\small\item\em Путь к файлу логирования. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{structUserInterface_1_1Params_a13c14c22bb9efb1cdc19d7e6185e8bef}{p}}
+\begin{DoxyCompactList}\small\item\em Порт для подключения к серверу. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Подробное описание}
+Структура для хранения параметров приложения. 
+
+Эта структура хранит параметры, переданные через командную строку, и предоставляет методы для проверки значений по умолчанию. 
+
+\doxysubsection{Методы}
+\mbox{\Hypertarget{structUserInterface_1_1Params_ad02f640ca89fc022901b231b38b86485}\label{structUserInterface_1_1Params_ad02f640ca89fc022901b231b38b86485}} 
+\index{UserInterface::Params@{UserInterface::Params}!d\_default@{d\_default}}
+\index{d\_default@{d\_default}!UserInterface::Params@{UserInterface::Params}}
+\doxysubsubsection{\texorpdfstring{d\_default()}{d\_default()}}
+{\footnotesize\ttfamily bool User\+Interface\+::\+Params\+::d\+\_\+default (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Проверка значения пути к файлу конфигурации по умолчанию. 
+
+\begin{DoxyReturn}{Возвращает}
+true, если путь равен \char`\"{}/etc/vcalc.\+conf\char`\"{}; иначе false. 
+\end{DoxyReturn}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{75 \{ \textcolor{keywordflow}{return} (\mbox{\hyperlink{structUserInterface_1_1Params_a6e822ec952167c94c445e2d672d5757b}{d}} == \textcolor{stringliteral}{"{}/etc/vcalc.conf"{}}); \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{structUserInterface_1_1Params_a7665d2530e4d07e63e0706324e69529d}\label{structUserInterface_1_1Params_a7665d2530e4d07e63e0706324e69529d}} 
+\index{UserInterface::Params@{UserInterface::Params}!l\_default@{l\_default}}
+\index{l\_default@{l\_default}!UserInterface::Params@{UserInterface::Params}}
+\doxysubsubsection{\texorpdfstring{l\_default()}{l\_default()}}
+{\footnotesize\ttfamily bool User\+Interface\+::\+Params\+::l\+\_\+default (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Проверка значения пути к файлу логирования по умолчанию. 
+
+\begin{DoxyReturn}{Возвращает}
+true, если путь равен \char`\"{}/var/log/vcalc.\+log\char`\"{}; иначе false. 
+\end{DoxyReturn}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{82 \{ \textcolor{keywordflow}{return} (\mbox{\hyperlink{structUserInterface_1_1Params_a63431cf1a50f2bd7e4a2867455a86219}{l}} == \textcolor{stringliteral}{"{}/var/log/vcalc.log"{}}); \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{structUserInterface_1_1Params_a92f3955a56510522b534aa396c7ad5ce}\label{structUserInterface_1_1Params_a92f3955a56510522b534aa396c7ad5ce}} 
+\index{UserInterface::Params@{UserInterface::Params}!p\_default@{p\_default}}
+\index{p\_default@{p\_default}!UserInterface::Params@{UserInterface::Params}}
+\doxysubsubsection{\texorpdfstring{p\_default()}{p\_default()}}
+{\footnotesize\ttfamily bool User\+Interface\+::\+Params\+::p\+\_\+default (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Проверка значения порта по умолчанию. 
+
+\begin{DoxyReturn}{Возвращает}
+true, если порт равен 33333; иначе false. 
+\end{DoxyReturn}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{68 \{ \textcolor{keywordflow}{return} (\mbox{\hyperlink{structUserInterface_1_1Params_a13c14c22bb9efb1cdc19d7e6185e8bef}{p}} == 33333); \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Данные класса}
+\mbox{\Hypertarget{structUserInterface_1_1Params_a6e822ec952167c94c445e2d672d5757b}\label{structUserInterface_1_1Params_a6e822ec952167c94c445e2d672d5757b}} 
+\index{UserInterface::Params@{UserInterface::Params}!d@{d}}
+\index{d@{d}!UserInterface::Params@{UserInterface::Params}}
+\doxysubsubsection{\texorpdfstring{d}{d}}
+{\footnotesize\ttfamily string User\+Interface\+::\+Params\+::d}
+
+
+
+Путь к файлу конфигурации. 
+
+\mbox{\Hypertarget{structUserInterface_1_1Params_a63431cf1a50f2bd7e4a2867455a86219}\label{structUserInterface_1_1Params_a63431cf1a50f2bd7e4a2867455a86219}} 
+\index{UserInterface::Params@{UserInterface::Params}!l@{l}}
+\index{l@{l}!UserInterface::Params@{UserInterface::Params}}
+\doxysubsubsection{\texorpdfstring{l}{l}}
+{\footnotesize\ttfamily string User\+Interface\+::\+Params\+::l}
+
+
+
+Путь к файлу логирования. 
+
+\mbox{\Hypertarget{structUserInterface_1_1Params_a13c14c22bb9efb1cdc19d7e6185e8bef}\label{structUserInterface_1_1Params_a13c14c22bb9efb1cdc19d7e6185e8bef}} 
+\index{UserInterface::Params@{UserInterface::Params}!p@{p}}
+\index{p@{p}!UserInterface::Params@{UserInterface::Params}}
+\doxysubsubsection{\texorpdfstring{p}{p}}
+{\footnotesize\ttfamily int User\+Interface\+::\+Params\+::p}
+
+
+
+Порт для подключения к серверу. 
+
+
+
+Объявления и описания членов структуры находятся в файле\+:\begin{DoxyCompactItemize}
+\item 
+/home/stud/Загрузки/\+Ti\+MP/\+Ti\+MP\+\_\+\+K/headers/\mbox{\hyperlink{Interface_8h}{Interface.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,40 @@
+\hypertarget{Interface_8h_source}{}\doxysection{Interface.\+h}
+\label{Interface_8h_source}\index{/home/stud/Загрузки/TiMP/TiMP\_K/headers/Interface.h@{/home/stud/Загрузки/TiMP/TiMP\_K/headers/Interface.h}}
+\mbox{\hyperlink{Interface_8h}{См. документацию.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{Calculator_8h}{Calculator.h}}"{}}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{DataBaseHandler_8h}{DataBaseHandler.h}}"{}}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{Errors_8h}{Errors.h}}"{}}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{Logger_8h}{Logger.h}}"{}}}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{Server_8h}{Server.h}}"{}}}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#include <boost/program\_options.hpp>}}
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#include <cstdint>}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 \textcolor{keyword}{using namespace }std;}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{36 \textcolor{keyword}{class }\mbox{\hyperlink{classUserInterface}{UserInterface}} \{}
+\DoxyCodeLine{37 \textcolor{keyword}{public}:}
+\DoxyCodeLine{48     \textcolor{keywordtype}{int} \mbox{\hyperlink{classUserInterface_a4fbd684be23f627e895adc03d6830c78}{interface}}(\textcolor{keywordtype}{int} argc, \textcolor{keyword}{const} \textcolor{keywordtype}{char} **argv);}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50 \textcolor{keyword}{private}:}
+\DoxyCodeLine{58     \textcolor{keyword}{struct }\mbox{\hyperlink{structUserInterface_1_1Params}{Params}} \{}
+\DoxyCodeLine{59         \textcolor{keywordtype}{string} \mbox{\hyperlink{structUserInterface_1_1Params_a6e822ec952167c94c445e2d672d5757b}{d}}; }
+\DoxyCodeLine{60         \textcolor{keywordtype}{string} \mbox{\hyperlink{structUserInterface_1_1Params_a63431cf1a50f2bd7e4a2867455a86219}{l}}; }
+\DoxyCodeLine{61         \textcolor{keywordtype}{int} \mbox{\hyperlink{structUserInterface_1_1Params_a13c14c22bb9efb1cdc19d7e6185e8bef}{p}};    }
+\DoxyCodeLine{62 }
+\DoxyCodeLine{68         \textcolor{keywordtype}{bool} \mbox{\hyperlink{structUserInterface_1_1Params_a92f3955a56510522b534aa396c7ad5ce}{p\_default}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} (\mbox{\hyperlink{structUserInterface_1_1Params_a13c14c22bb9efb1cdc19d7e6185e8bef}{p}} == 33333); \}}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{75         \textcolor{keywordtype}{bool} \mbox{\hyperlink{structUserInterface_1_1Params_ad02f640ca89fc022901b231b38b86485}{d\_default}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} (\mbox{\hyperlink{structUserInterface_1_1Params_a6e822ec952167c94c445e2d672d5757b}{d}} == \textcolor{stringliteral}{"{}/etc/vcalc.conf"{}}); \}}
+\DoxyCodeLine{76 }
+\DoxyCodeLine{82         \textcolor{keywordtype}{bool} \mbox{\hyperlink{structUserInterface_1_1Params_a7665d2530e4d07e63e0706324e69529d}{l\_default}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} (\mbox{\hyperlink{structUserInterface_1_1Params_a63431cf1a50f2bd7e4a2867455a86219}{l}} == \textcolor{stringliteral}{"{}/var/log/vcalc.log"{}}); \}}
+\DoxyCodeLine{83     \} \mbox{\hyperlink{classUserInterface_af13fb96c6e9886081b7f83c051078370}{params}}; }
+\DoxyCodeLine{84 \};}
+
+\end{DoxyCode}
