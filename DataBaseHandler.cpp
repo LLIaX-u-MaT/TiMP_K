@@ -21,7 +21,7 @@ int BaseConnector::baseConnection(string baseFile) {
 
       if (tempLogin.empty() || tempPass.empty()) {
         throw dataBaseErr(
-            "Внимание: Обнаружена некорректная пара логин:пароль: " + line);
+            "Обнаружена некорректная пара: " + line);
       }
       dataBase[tempLogin] = tempPass;
     }
